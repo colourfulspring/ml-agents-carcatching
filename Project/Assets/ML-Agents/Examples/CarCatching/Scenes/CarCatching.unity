@@ -168,8 +168,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1784550e66204da4da76096a48410f5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  agentRunSpeed: 0
-  agentRotationSpeed: 0
+  agentRunSpeed: 20
+  agentRotationSpeed: 5
   spawnAreaMarginMultiplier: 1
 --- !u!114 &785417465
 MonoBehaviour:

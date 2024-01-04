@@ -9,8 +9,11 @@ public class CarCatchingEnvController : MonoBehaviour
     public class CarInfo
     {
         public CarAgent Agent;
+
+        // StartingPos and StartingRot is used when UseRandomAgentPosition is true and UseRandomAgentRotation is true
         [HideInInspector] public Vector3 StartingPos;
         [HideInInspector] public Quaternion StartingRot;
+        // StartingScale is used for collision detection between cars and walls during initialization
         [HideInInspector] public Vector3 StartingScale;
         [HideInInspector] public Rigidbody Rb;
     }
