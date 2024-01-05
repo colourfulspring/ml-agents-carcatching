@@ -442,6 +442,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ground
       objectReference: {fileID: 0}
+    - target: {fileID: 5290499718051072561, guid: c94b6b03f3b44e148898302b9a26ae73,
+        type: 3}
+      propertyPath: m_GridSize.x
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 5290499718051072561, guid: c94b6b03f3b44e148898302b9a26ae73,
+        type: 3}
+      propertyPath: m_GridSize.z
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 5290499718051072561, guid: c94b6b03f3b44e148898302b9a26ae73,
+        type: 3}
+      propertyPath: m_ShowGizmos
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5484449752687762142, guid: c94b6b03f3b44e148898302b9a26ae73,
         type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -491,6 +506,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: CatchingCar (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8747386696358885127, guid: c94b6b03f3b44e148898302b9a26ae73,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8758290301914940107, guid: c94b6b03f3b44e148898302b9a26ae73,
         type: 3}

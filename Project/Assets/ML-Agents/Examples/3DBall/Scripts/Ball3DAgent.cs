@@ -34,6 +34,7 @@ public class Ball3DAgent : Agent
 
     public override void OnActionReceived(ActionBuffers actionBuffers)
     {
+        Debug.Log("Action Received: (" + actionBuffers.ContinuousActions[0] + ", " + actionBuffers.ContinuousActions[1] + ")");
         var actionZ = 2f * Mathf.Clamp(actionBuffers.ContinuousActions[0], -1f, 1f);
         var actionX = 2f * Mathf.Clamp(actionBuffers.ContinuousActions[1], -1f, 1f);
 
