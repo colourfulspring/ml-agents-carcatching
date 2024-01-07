@@ -51,11 +51,8 @@ MonoBehaviour:
   m_AgentGameObject: {fileID: 2710286047221272849}
   m_DetectableTags:
   - wall
-  - agent
-  - goal
-  - blockSmall
-  - blockLarge
-  - blockVeryLarge
+  - blueAgent
+  - purpleAgent
   m_ColliderMask:
     serializedVersion: 2
     m_Bits: 1
@@ -64,10 +61,7 @@ MonoBehaviour:
   m_DebugColors:
   - {r: 0, g: 0, b: 0, a: 0}
   - {r: 0, g: 0.5176471, b: 1, a: 0}
-  - {r: 0.46666667, g: 0.7058824, b: 0.3529412, a: 0}
-  - {r: 1, g: 0.99607843, b: 0.9843137, a: 0}
-  - {r: 0.48235294, g: 0.48235294, b: 0.48235294, a: 0}
-  - {r: 0.35686275, g: 0.35686275, b: 0.35686275, a: 0}
+  - {r: 0.44705886, g: 0.40784317, b: 0.7607844, a: 0}
   m_GizmoYOffset: 0
   m_ShowGizmos: 0
   m_CompressionType: 1
@@ -337,7 +331,7 @@ GameObject:
   - component: {fileID: 5601152702967375707}
   m_Layer: 0
   m_Name: CarAgentGridCollab
-  m_TagString: agent
+  m_TagString: blueAgent
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -421,7 +415,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_BrainParameters:
     VectorObservationSize: 8
-    NumStackedVectorObservations: 2
+    NumStackedVectorObservations: 1
     m_ActionSpec:
       m_NumContinuousActions: 0
       BranchSizes: 07000000
@@ -454,6 +448,7 @@ MonoBehaviour:
     maxStep: 0
   hasUpgradedFromAgentParameters: 1
   MaxStep: 0
+  isRunner: 0
 --- !u!114 &5601152702967375707
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -9,6 +9,7 @@ public class CarAgent : Agent
 {
     private CarCatchingSettings m_CarCatchingSettings;
     private Rigidbody m_CarRb; //cached on initialization
+    public CarCatchingEnvController carCatchingEnvController;
 
     protected override void Awake()
     {
@@ -27,9 +28,14 @@ public class CarAgent : Agent
     /// </summary>
     public override void CollectObservations(VectorSensor sensor)
     {
-        // Debug.Log(this.transform.parent.gameObject.name +
-                  // ", " + this.name + "CollectObservations: ");
-        sensor.AddOneHotObservation(1, 8);
+        Debug.Log(this.transform.parent.gameObject.name +
+        ", " + this.name + "CollectObservations: ");
+        Vector2[] obs = carCatchingEnvController.GetAgentPosObs(this);
+        foreach (var myobs in obs)
+        {
+            sensor.AddObservation(myobs);
+            Debug.Log(myobs + ",");
+        }
     }
 
     /// <summary>
@@ -103,9 +109,9 @@ public class CarAgent : Agent
 
     // public void FixedUpdate()
     // {
-        // m_CatchingCarRb.AddForce(Vector3.right, ForceMode.VelocityChange);
-        // Debug.Log(this.transform.parent.gameObject.name +
-        //           ", " + this.name + ": " + this.transform.position + " " +
-        //           this.transform.localPosition);
+    // m_CatchingCarRb.AddForce(Vector3.right, ForceMode.VelocityChange);
+    // Debug.Log(this.transform.parent.gameObject.name +
+    //           ", " + this.name + ": " + this.transform.position + " " +
+    //           this.transform.localPosition);
     // }
 }

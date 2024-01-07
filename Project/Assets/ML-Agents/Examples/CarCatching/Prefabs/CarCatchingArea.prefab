@@ -54,8 +54,7 @@ MonoBehaviour:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 0, y: 0, z: 0}
   ground: {fileID: 3888811534340683436}
-  area: {fileID: 1581870063183487094}
-  CatchingAgentsList:
+  AgentsList:
   - Agent: {fileID: 376297009715664505}
     StartingPos: {x: 0, y: 0, z: 0}
     StartingRot: {x: 0, y: 0, z: 0, w: 0}
@@ -71,7 +70,6 @@ MonoBehaviour:
     StartingRot: {x: 0, y: 0, z: 0, w: 0}
     StartingScale: {x: 0, y: 0, z: 0}
     Rb: {fileID: 0}
-  RunningAgentsList:
   - Agent: {fileID: 1362814094692157171}
     StartingPos: {x: 0, y: 0, z: 0}
     StartingRot: {x: 0, y: 0, z: 0, w: 0}
@@ -180,7 +178,7 @@ PrefabInstance:
     - target: {fileID: 2708762399863795223, guid: a431228058383324287911e110279f5a,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 100
+      value: -900
       objectReference: {fileID: 0}
     - target: {fileID: 2708762399863795223, guid: a431228058383324287911e110279f5a,
         type: 3}
@@ -190,7 +188,7 @@ PrefabInstance:
     - target: {fileID: 2708762399863795223, guid: a431228058383324287911e110279f5a,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 100
+      value: -400
       objectReference: {fileID: 0}
     - target: {fileID: 2708762399863795223, guid: a431228058383324287911e110279f5a,
         type: 3}
@@ -232,6 +230,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: CatchingCar (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 8880364502379087430, guid: a431228058383324287911e110279f5a,
+        type: 3}
+      propertyPath: carCatchingEnvController
+      value: 
+      objectReference: {fileID: 3974680290261692630}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -271,7 +274,7 @@ PrefabInstance:
     - target: {fileID: 2708762399863795223, guid: a431228058383324287911e110279f5a,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 100
+      value: -900
       objectReference: {fileID: 0}
     - target: {fileID: 2708762399863795223, guid: a431228058383324287911e110279f5a,
         type: 3}
@@ -281,7 +284,7 @@ PrefabInstance:
     - target: {fileID: 2708762399863795223, guid: a431228058383324287911e110279f5a,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 200
+      value: -300
       objectReference: {fileID: 0}
     - target: {fileID: 2708762399863795223, guid: a431228058383324287911e110279f5a,
         type: 3}
@@ -323,6 +326,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: CatchingCar (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 8880364502379087430, guid: a431228058383324287911e110279f5a,
+        type: 3}
+      propertyPath: carCatchingEnvController
+      value: 
+      objectReference: {fileID: 3974680290261692630}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -362,7 +370,7 @@ PrefabInstance:
     - target: {fileID: 2708762399863795223, guid: a431228058383324287911e110279f5a,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1900
+      value: 900
       objectReference: {fileID: 0}
     - target: {fileID: 2708762399863795223, guid: a431228058383324287911e110279f5a,
         type: 3}
@@ -372,7 +380,7 @@ PrefabInstance:
     - target: {fileID: 2708762399863795223, guid: a431228058383324287911e110279f5a,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 900
+      value: 400
       objectReference: {fileID: 0}
     - target: {fileID: 2708762399863795223, guid: a431228058383324287911e110279f5a,
         type: 3}
@@ -419,6 +427,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: b0da1813c36914e678ba57f2790424e1, type: 2}
+    - target: {fileID: 8880364502379087430, guid: a431228058383324287911e110279f5a,
+        type: 3}
+      propertyPath: carCatchingEnvController
+      value: 
+      objectReference: {fileID: 3974680290261692630}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -458,7 +471,7 @@ PrefabInstance:
     - target: {fileID: 2708762399863795223, guid: a431228058383324287911e110279f5a,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 200
+      value: -800
       objectReference: {fileID: 0}
     - target: {fileID: 2708762399863795223, guid: a431228058383324287911e110279f5a,
         type: 3}
@@ -468,7 +481,7 @@ PrefabInstance:
     - target: {fileID: 2708762399863795223, guid: a431228058383324287911e110279f5a,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 100
+      value: -400
       objectReference: {fileID: 0}
     - target: {fileID: 2708762399863795223, guid: a431228058383324287911e110279f5a,
         type: 3}
@@ -510,6 +523,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: CatchingCar (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 8880364502379087430, guid: a431228058383324287911e110279f5a,
+        type: 3}
+      propertyPath: carCatchingEnvController
+      value: 
+      objectReference: {fileID: 3974680290261692630}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
