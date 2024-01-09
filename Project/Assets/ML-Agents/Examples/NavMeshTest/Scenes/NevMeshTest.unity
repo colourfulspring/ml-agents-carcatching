@@ -266,6 +266,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ee8f662b5332da428aa4b253df04286, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  goal: {x: 0, y: 1.51, z: 12.66}
 --- !u!1 &950426098
 GameObject:
   m_ObjectHideFlags: 0
@@ -690,7 +691,7 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.16666667
+  m_VoxelSize: 3.3333333
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: 1c07e8167fad4bb4492278eff13f25e5, type: 2}
   m_BuildHeightMesh: 0

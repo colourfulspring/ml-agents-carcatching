@@ -6,8 +6,9 @@ using UnityEngine.AI;
 public class PlayerController : MonoBehaviour
 {
     // Update is called once per frame
+    public Vector3 goal;
     void Update()
     {
-        GetComponent<NavMeshAgent>().SetDestination(new Vector3(0, 0, 12.66f));
+        GetComponent<NavMeshAgent>().SetDestination(goal);
     }
 }
