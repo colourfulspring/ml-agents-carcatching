@@ -3,13 +3,15 @@ using UnityEngine;
 using Unity.MLAgents;
 using Unity.MLAgents.Actuators;
 using Unity.MLAgents.Sensors;
-
+using Unity.AI;
 
 public class CarAgent : Agent
 {
     private CarCatchingSettings m_CarCatchingSettings;
     private Rigidbody m_CarRb; //cached on initialization
     public CarCatchingEnvController carCatchingEnvController;
+
+    public Vector3 navigationGoal;
 
     protected override void Awake()
     {
@@ -28,13 +30,13 @@ public class CarAgent : Agent
     /// </summary>
     public override void CollectObservations(VectorSensor sensor)
     {
-        Debug.Log(this.transform.parent.gameObject.name +
-        ", " + this.name + "CollectObservations: ");
+        // Debug.Log(this.transform.parent.gameObject.name +
+        // ", " + this.name + "CollectObservations: ");
         Vector2[] obs = carCatchingEnvController.GetAgentPosObs(this);
         foreach (var myobs in obs)
         {
             sensor.AddObservation(myobs);
-            Debug.Log(myobs + ",");
+            // Debug.Log(myobs + ",");
         }
     }
 
@@ -107,11 +109,8 @@ public class CarAgent : Agent
         }
     }
 
-    // public void FixedUpdate()
-    // {
-    // m_CatchingCarRb.AddForce(Vector3.right, ForceMode.VelocityChange);
-    // Debug.Log(this.transform.parent.gameObject.name +
-    //           ", " + this.name + ": " + this.transform.position + " " +
-    //           this.transform.localPosition);
-    // }
+    public void FixedUpdate()
+    {
+        GetComponent<UnityEngine.AI.NavMeshAgent>().SetDestination(navigationGoal);
+    }
 }

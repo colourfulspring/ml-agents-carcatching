@@ -329,6 +329,7 @@ GameObject:
   - component: {fileID: 8110157416270102484}
   - component: {fileID: 8880364502379087430}
   - component: {fileID: 5601152702967375707}
+  - component: {fileID: 3822330893343168228}
   m_Layer: 0
   m_Name: CarAgentGridCollab
   m_TagString: blueAgent
@@ -351,7 +352,7 @@ Transform:
   - {fileID: 2704888262008647423}
   - {fileID: 2709359580712052713}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!54 &2691837803371243691
 Rigidbody:
@@ -448,7 +449,7 @@ MonoBehaviour:
     maxStep: 0
   hasUpgradedFromAgentParameters: 1
   MaxStep: 0
-  isRunner: 0
+  carCatchingEnvController: {fileID: 0}
 --- !u!114 &5601152702967375707
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -464,6 +465,28 @@ MonoBehaviour:
   DecisionPeriod: 5
   DecisionStep: 0
   TakeActionsBetweenDecisions: 1
+--- !u!195 &3822330893343168228
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2710286047221272849}
+  m_Enabled: 1
+  m_AgentTypeID: -1372625422
+  m_Radius: 0.5
+  m_Speed: 10
+  m_Acceleration: 200
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1 &2710572731397926669
 GameObject:
   m_ObjectHideFlags: 0
