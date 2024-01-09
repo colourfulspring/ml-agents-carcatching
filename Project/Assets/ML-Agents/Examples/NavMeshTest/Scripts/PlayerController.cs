@@ -5,7 +5,6 @@ using UnityEngine.AI;
 
 public class PlayerController : MonoBehaviour
 {
-    // public NavMeshAgent agent;
     // Update is called once per frame
     void Update()
     {
