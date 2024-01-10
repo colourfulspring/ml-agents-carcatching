@@ -3,12 +3,11 @@ using UnityEngine;
 using Unity.MLAgents;
 using Unity.MLAgents.Actuators;
 using Unity.MLAgents.Sensors;
-using Unity.AI;
+using UnityEngine.AI;
 
 public class CarAgent : Agent
 {
     private CarCatchingSettings m_CarCatchingSettings;
-    private Rigidbody m_CarRb; //cached on initialization
     public CarCatchingEnvController carCatchingEnvController;
 
     public Vector3 navigationGoal;
@@ -19,25 +18,20 @@ public class CarAgent : Agent
         m_CarCatchingSettings = FindObjectOfType<CarCatchingSettings>();
     }
 
-    public override void Initialize()
-    {
-        // Cache the agent rb
-        m_CarRb = GetComponent<Rigidbody>();
-    }
-
     /// <summary>
     /// Collects vector observations for each agent.
     /// </summary>
     public override void CollectObservations(VectorSensor sensor)
     {
         // Debug.Log(this.transform.parent.gameObject.name +
-        // ", " + this.name + "CollectObservations: ");
-        Vector2[] obs = carCatchingEnvController.GetAgentPosObs(this);
-        foreach (var myobs in obs)
-        {
-            sensor.AddObservation(myobs);
-            // Debug.Log(myobs + ",");
-        }
+        //           ", " + this.name + "CollectObservations: ");
+        // Vector2[] obs = carCatchingEnvController.GetAgentPosObs(this);
+        // foreach (var myobs in obs)
+        // {
+        //     sensor.AddObservation(myobs);
+        //     // Debug.Log(myobs + ",");
+        // }
+        sensor.AddOneHotObservation(2, 8);
     }
 
     /// <summary>
@@ -74,8 +68,6 @@ public class CarAgent : Agent
         }
 
         transform.Rotate(rotateDir, m_CarCatchingSettings.agentRotationSpeed);
-        m_CarRb.AddForce(dirToGo * m_CarCatchingSettings.agentRunSpeed,
-            ForceMode.VelocityChange);
     }
 
     /// <summary>
@@ -84,7 +76,7 @@ public class CarAgent : Agent
     public override void OnActionReceived(ActionBuffers actionBuffers)
     {
         // Move the agent using the action.
-        MoveAgent(actionBuffers.DiscreteActions);
+        // MoveAgent(actionBuffers.DiscreteActions);
     }
 
 
@@ -111,6 +103,6 @@ public class CarAgent : Agent
 
     public void FixedUpdate()
     {
-        GetComponent<UnityEngine.AI.NavMeshAgent>().SetDestination(navigationGoal);
+        GetComponent<NavMeshAgent>().SetDestination(navigationGoal);
     }
 }

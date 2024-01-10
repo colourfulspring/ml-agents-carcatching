@@ -19,7 +19,7 @@ public class CarCatchingEnvController : MonoBehaviour
 
         // StartingScale is used for collision detection between cars and walls during initialization
         [HideInInspector] public Vector3 StartingScale;
-        [HideInInspector] public Rigidbody Rb;
+        [HideInInspector] public Vector3 GoalPosition;
     }
 
     /// <summary>
@@ -58,7 +58,7 @@ public class CarCatchingEnvController : MonoBehaviour
             item.StartingPos = item.Agent.transform.position;
             item.StartingRot = item.Agent.transform.rotation;
             item.StartingScale = item.Agent.transform.localScale;
-            item.Rb = item.Agent.GetComponent<Rigidbody>();
+            item.GoalPosition = item.Agent.transform.position;
         }
 
         ResetScene();
@@ -107,8 +107,6 @@ public class CarCatchingEnvController : MonoBehaviour
             var pos = UseRandomAgentPosition ? GetRandomSpawnPos(rot) : item.StartingPos;
 
             item.Agent.transform.SetPositionAndRotation(pos, rot);
-            item.Rb.velocity = Vector3.zero;
-            item.Rb.angularVelocity = Vector3.zero;
         }
     }
 
@@ -119,8 +117,8 @@ public class CarCatchingEnvController : MonoBehaviour
         Vector2[] ans = new Vector2[AgentsList.Count];
         // absolute position in the prefab of the current agent
         Vector2 agentAbsolutePos;
-        // Debug.Log(agent.transform.parent.gameObject.name +
-        //           ", " + agent.name + ", " + agent.transform.position);
+        Debug.Log(agent.transform.parent.gameObject.name +
+                  ", " + agent.name + ", " + agent.transform.position);
         // Put normalized absolute position of the current agent at beginning
         {
             Vector3 pos = agent.transform.localPosition;
@@ -130,8 +128,8 @@ public class CarCatchingEnvController : MonoBehaviour
         // Put normalized absolute position of other agents to current agent in order.
         for (int i = 0, j = 1; i < AgentsList.Count; ++i)
         {
-            // Debug.Log(AgentsList[i].Agent.transform.parent.gameObject.name +
-            //           ", " + AgentsList[i].Agent.name + ", " + AgentsList[i].Agent.transform.position);
+            Debug.Log(AgentsList[i].Agent.transform.parent.gameObject.name +
+                      ", " + AgentsList[i].Agent.name + ", " + AgentsList[i].Agent.transform.position);
             if (AgentsList[i].Agent == agent)
                 continue;
 
