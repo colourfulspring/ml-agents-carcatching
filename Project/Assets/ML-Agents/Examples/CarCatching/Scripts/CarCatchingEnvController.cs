@@ -65,7 +65,8 @@ public class CarCatchingEnvController : MonoBehaviour
     }
 
     /// <summary>
-    /// Use the ground's bounds to pick a random spawn position.
+    /// Use the ground's bounds to pick a random spawn position. The requirements is that the car's collider
+    /// doesn't collide with any wall's collider
     /// </summary>
     public Vector3 GetRandomSpawnPos(Quaternion rot)
     {

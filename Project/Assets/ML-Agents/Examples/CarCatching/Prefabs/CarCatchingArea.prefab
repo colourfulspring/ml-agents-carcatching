@@ -235,6 +235,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: CatchingCar
       objectReference: {fileID: 0}
+    - target: {fileID: 8880364502379087430, guid: a431228058383324287911e110279f5a,
+        type: 3}
+      propertyPath: customNavigationGoal.x
+      value: -462
+      objectReference: {fileID: 0}
+    - target: {fileID: 8880364502379087430, guid: a431228058383324287911e110279f5a,
+        type: 3}
+      propertyPath: customNavigationGoal.y
+      value: 23
+      objectReference: {fileID: 0}
+    - target: {fileID: 8880364502379087430, guid: a431228058383324287911e110279f5a,
+        type: 3}
+      propertyPath: customNavigationGoal.z
+      value: 182
+      objectReference: {fileID: 0}
+    - target: {fileID: 8880364502379087430, guid: a431228058383324287911e110279f5a,
+        type: 3}
+      propertyPath: carCatchingEnvController
+      value: 
+      objectReference: {fileID: 3974680290261692630}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -326,6 +346,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: CatchingCar (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 8880364502379087430, guid: a431228058383324287911e110279f5a,
+        type: 3}
+      propertyPath: customNavigationGoal.x
+      value: -640
+      objectReference: {fileID: 0}
+    - target: {fileID: 8880364502379087430, guid: a431228058383324287911e110279f5a,
+        type: 3}
+      propertyPath: customNavigationGoal.y
+      value: 23
+      objectReference: {fileID: 0}
+    - target: {fileID: 8880364502379087430, guid: a431228058383324287911e110279f5a,
+        type: 3}
+      propertyPath: customNavigationGoal.z
+      value: 245
+      objectReference: {fileID: 0}
+    - target: {fileID: 8880364502379087430, guid: a431228058383324287911e110279f5a,
+        type: 3}
+      propertyPath: carCatchingEnvController
+      value: 
+      objectReference: {fileID: 3974680290261692630}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -417,6 +457,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: CatchingCar (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 8880364502379087430, guid: a431228058383324287911e110279f5a,
+        type: 3}
+      propertyPath: customNavigationGoal.x
+      value: 782
+      objectReference: {fileID: 0}
+    - target: {fileID: 8880364502379087430, guid: a431228058383324287911e110279f5a,
+        type: 3}
+      propertyPath: customNavigationGoal.y
+      value: 23
+      objectReference: {fileID: 0}
+    - target: {fileID: 8880364502379087430, guid: a431228058383324287911e110279f5a,
+        type: 3}
+      propertyPath: customNavigationGoal.z
+      value: -41
+      objectReference: {fileID: 0}
+    - target: {fileID: 8880364502379087430, guid: a431228058383324287911e110279f5a,
+        type: 3}
+      propertyPath: carCatchingEnvController
+      value: 
+      objectReference: {fileID: 3974680290261692630}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -518,6 +578,21 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: b0da1813c36914e678ba57f2790424e1, type: 2}
+    - target: {fileID: 8880364502379087430, guid: a431228058383324287911e110279f5a,
+        type: 3}
+      propertyPath: customNavigationGoal.x
+      value: -113
+      objectReference: {fileID: 0}
+    - target: {fileID: 8880364502379087430, guid: a431228058383324287911e110279f5a,
+        type: 3}
+      propertyPath: customNavigationGoal.y
+      value: 23
+      objectReference: {fileID: 0}
+    - target: {fileID: 8880364502379087430, guid: a431228058383324287911e110279f5a,
+        type: 3}
+      propertyPath: customNavigationGoal.z
+      value: 437
+      objectReference: {fileID: 0}
     - target: {fileID: 8880364502379087430, guid: a431228058383324287911e110279f5a,
         type: 3}
       propertyPath: carCatchingEnvController

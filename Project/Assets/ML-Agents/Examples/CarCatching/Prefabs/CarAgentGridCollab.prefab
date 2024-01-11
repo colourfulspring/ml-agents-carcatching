@@ -422,7 +422,8 @@ MonoBehaviour:
   hasUpgradedFromAgentParameters: 1
   MaxStep: 0
   carCatchingEnvController: {fileID: 0}
-  navigationGoal: {x: 0, y: 0, z: 0}
+  useRandomNavigationGoal: 1
+  customNavigationGoal: {x: 0, y: 0, z: 0}
 --- !u!114 &5601152702967375707
 MonoBehaviour:
   m_ObjectHideFlags: 0

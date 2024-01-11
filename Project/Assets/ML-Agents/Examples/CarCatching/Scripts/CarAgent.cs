@@ -10,12 +10,21 @@ public class CarAgent : Agent
     private CarCatchingSettings m_CarCatchingSettings;
     public CarCatchingEnvController carCatchingEnvController;
 
-    public Vector3 navigationGoal;
+    public bool useRandomNavigationGoal;
+
+    // The user specified goal of NavMeshAgent
+    public Vector3 customNavigationGoal;
 
     protected override void Awake()
     {
         base.Awake();
         m_CarCatchingSettings = FindObjectOfType<CarCatchingSettings>();
+    }
+
+    void Start()
+    {
+        var goal = useRandomNavigationGoal ? customNavigationGoal : customNavigationGoal;
+        GetComponent<NavMeshAgent>().SetDestination(customNavigationGoal);
     }
 
     /// <summary>
@@ -103,6 +112,5 @@ public class CarAgent : Agent
 
     public void FixedUpdate()
     {
-        GetComponent<NavMeshAgent>().SetDestination(navigationGoal);
     }
 }
