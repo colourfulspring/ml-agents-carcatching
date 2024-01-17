@@ -48,20 +48,39 @@ public class CarCatchingEnvController : MonoBehaviour
 
     // private int m_ResetTimer;
 
-    void Start()
+    protected void Awake()
     {
         // Get the ground's bounds
         areaBounds = ground.GetComponent<Collider>().bounds;
         m_CarCatchingSettings = FindObjectOfType<CarCatchingSettings>();
+    }
+
+    void Start()
+    {
         foreach (var item in AgentsList)
         {
-            item.StartingPos = item.Agent.transform.position;
-            item.StartingRot = item.Agent.transform.rotation;
-            item.StartingScale = item.Agent.transform.localScale;
-            item.GoalPosition = item.Agent.transform.position;
+            var itemTrans = item.Agent.transform;
+            item.StartingPos = itemTrans.position;
+            item.StartingRot = itemTrans.rotation;
+            item.StartingScale = itemTrans.localScale;
+            item.GoalPosition = itemTrans.position;
         }
 
         ResetScene();
+    }
+
+    /// <summary>
+    /// Use the ground's bounds to pick a random local position in the area bounds. Make sure the Y value
+    /// is 0, X and Z value lies in [-areaBounds.extents.x(z), areaBounds.extents.x(z)], respectively.
+    /// </summary>
+    public Vector3 GetRandomPos()
+    {
+        var randomPosX = Random.Range(-areaBounds.extents.x * m_CarCatchingSettings.spawnAreaMarginMultiplier,
+            areaBounds.extents.x * m_CarCatchingSettings.spawnAreaMarginMultiplier);
+
+        var randomPosZ = Random.Range(-areaBounds.extents.z * m_CarCatchingSettings.spawnAreaMarginMultiplier,
+            areaBounds.extents.z * m_CarCatchingSettings.spawnAreaMarginMultiplier);
+        return new Vector3(randomPosX, 0f, randomPosZ);
     }
 
     /// <summary>
@@ -76,13 +95,8 @@ public class CarCatchingEnvController : MonoBehaviour
         var agentHalfExtents = AgentsList[0].StartingScale * 0.5f;
         while (foundNewSpawnLocation == false)
         {
-            var randomPosX = Random.Range(-areaBounds.extents.x * m_CarCatchingSettings.spawnAreaMarginMultiplier,
-                areaBounds.extents.x * m_CarCatchingSettings.spawnAreaMarginMultiplier);
-
-            var randomPosZ = Random.Range(-areaBounds.extents.z * m_CarCatchingSettings.spawnAreaMarginMultiplier,
-                areaBounds.extents.z * m_CarCatchingSettings.spawnAreaMarginMultiplier);
-            //Global Position
-            randomSpawnPos = ground.transform.position + new Vector3(randomPosX, localY, randomPosZ);
+            //Global Position = ground position + x,z local position + y
+            randomSpawnPos = ground.transform.position + GetRandomPos() + new Vector3(0f, localY, 0f);
             if (Physics.CheckBox(randomSpawnPos, agentHalfExtents, rot) == false)
             {
                 foundNewSpawnLocation = true;

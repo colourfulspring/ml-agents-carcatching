@@ -238,7 +238,7 @@ PrefabInstance:
     - target: {fileID: 8880364502379087430, guid: a431228058383324287911e110279f5a,
         type: 3}
       propertyPath: customNavigationGoal.x
-      value: -212
+      value: 281
       objectReference: {fileID: 0}
     - target: {fileID: 8880364502379087430, guid: a431228058383324287911e110279f5a,
         type: 3}
@@ -248,7 +248,7 @@ PrefabInstance:
     - target: {fileID: 8880364502379087430, guid: a431228058383324287911e110279f5a,
         type: 3}
       propertyPath: customNavigationGoal.z
-      value: -231
+      value: -152
       objectReference: {fileID: 0}
     - target: {fileID: 8880364502379087430, guid: a431228058383324287911e110279f5a,
         type: 3}

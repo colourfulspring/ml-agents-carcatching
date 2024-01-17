@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using Unity.MLAgents;
 using Unity.MLAgents.Actuators;
 using Unity.MLAgents.Sensors;
@@ -23,8 +22,12 @@ public class CarAgent : Agent
 
     void Start()
     {
-        var goal = useRandomNavigationGoal ? customNavigationGoal : customNavigationGoal;
-        GetComponent<NavMeshAgent>().SetDestination(customNavigationGoal);
+        var localY = transform.localPosition.y; // Attention: local Y
+
+        var navigationGoal = useRandomNavigationGoal
+            ? carCatchingEnvController.GetRandomPos() + new Vector3(0f, localY, 0f)
+            : customNavigationGoal;
+        GetComponent<NavMeshAgent>().SetDestination(navigationGoal);
     }
 
     /// <summary>
