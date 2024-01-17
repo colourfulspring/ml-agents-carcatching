@@ -402,6 +402,7 @@ MonoBehaviour:
   carCatchingEnvController: {fileID: 0}
   useRandomNavigationGoal: 1
   customNavigationGoal: {x: 0, y: 0, z: 0}
+  decisionRangeRadius: 300
 --- !u!114 &5601152702967375707
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -414,9 +415,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a5c9d521e5ef4759a8246a07d52221e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DecisionPeriod: 5
+  DecisionPeriod: 20
   DecisionStep: 0
-  TakeActionsBetweenDecisions: 1
+  TakeActionsBetweenDecisions: 0
 --- !u!195 &3822330893343168228
 NavMeshAgent:
   m_ObjectHideFlags: 0

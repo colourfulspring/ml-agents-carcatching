@@ -14,6 +14,10 @@ public class CarAgent : Agent
     // The user specified goal of NavMeshAgent
     public Vector3 customNavigationGoal;
 
+    // The radius of the decision range. We inversely normalize the output of neural network
+    // to this range
+    public int decisionRangeRadius;
+
     protected override void Awake()
     {
         base.Awake();
@@ -22,12 +26,12 @@ public class CarAgent : Agent
 
     void Start()
     {
-        var localY = transform.localPosition.y; // Attention: local Y
+        var localY = transform.localPosition.y; // Attention: local Y, car in prefab
 
         var navigationGoal = useRandomNavigationGoal
             ? carCatchingEnvController.GetRandomPos() + new Vector3(0f, localY, 0f)
             : customNavigationGoal;
-        GetComponent<NavMeshAgent>().SetDestination(navigationGoal);
+        // GetComponent<NavMeshAgent>().SetDestination(navigationGoal);
     }
 
     /// <summary>
@@ -37,13 +41,13 @@ public class CarAgent : Agent
     {
         // Debug.Log(this.transform.parent.gameObject.name +
         //           ", " + this.name + "CollectObservations: ");
-        // Vector2[] obs = carCatchingEnvController.GetAgentPosObs(this);
-        // foreach (var myobs in obs)
-        // {
-        //     sensor.AddObservation(myobs);
-        //     // Debug.Log(myobs + ",");
-        // }
-        sensor.AddOneHotObservation(2, 8);
+        Vector2[] obs = carCatchingEnvController.GetAgentPosObs(this);
+        foreach (var myobs in obs)
+        {
+            sensor.AddObservation(myobs);
+            // Debug.Log(myobs + ",");
+        }
+        // sensor.AddOneHotObservation(2, 8);
     }
 
     /// <summary>
@@ -87,8 +91,29 @@ public class CarAgent : Agent
     /// </summary>
     public override void OnActionReceived(ActionBuffers actionBuffers)
     {
+        // Debug.Log(this.transform.parent.gameObject.name +
+        //           ", " + this.name + "onActionReceived: ");
+
+        // var rawAction = new Vector2(actionBuffers.ContinuousActions[0], actionBuffers.ContinuousActions[1]);
+        var rawAction = new Vector2(1, 1);
+        var reverselyNormalizedPos2d = ReverselyNormalizePos2d(rawAction);
+
+        // Add the reversely normalized action and the cars local position (localY
+        var navigationGoal = transform.localPosition +
+                             new Vector3(reverselyNormalizedPos2d.x, 0f, reverselyNormalizedPos2d.y);
+
+        Debug.Log(this.transform.parent.gameObject.name +
+                  ", " + this.name + "onActionReceived: navigationGoal " + navigationGoal);
+        GetComponent<NavMeshAgent>().SetDestination(navigationGoal);
+
         // Move the agent using the action.
         // MoveAgent(actionBuffers.DiscreteActions);
+    }
+
+    public Vector2 ReverselyNormalizePos2d(Vector2 pos)
+    {
+        Vector2 ans = new Vector2(pos.x * decisionRangeRadius, pos.y * decisionRangeRadius);
+        return ans;
     }
 
 
@@ -115,5 +140,7 @@ public class CarAgent : Agent
 
     public void FixedUpdate()
     {
+        // Debug.Log(this.transform.parent.gameObject.name +
+        //           ", " + this.name + "FixedUpdate: ");
     }
 }

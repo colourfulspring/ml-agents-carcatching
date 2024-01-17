@@ -132,8 +132,8 @@ public class CarCatchingEnvController : MonoBehaviour
         Vector2[] ans = new Vector2[AgentsList.Count];
         // absolute position in the prefab of the current agent
         Vector2 agentAbsolutePos;
-        Debug.Log(agent.transform.parent.gameObject.name +
-                  ", " + agent.name + ", " + agent.transform.position);
+        // Debug.Log(agent.transform.parent.gameObject.name +
+        //           ", " + agent.name + ", " + agent.transform.position);
         // Put normalized absolute position of the current agent at beginning
         {
             Vector3 pos = agent.transform.localPosition;
@@ -143,8 +143,8 @@ public class CarCatchingEnvController : MonoBehaviour
         // Put normalized absolute position of other agents to current agent in order.
         for (int i = 0, j = 1; i < AgentsList.Count; ++i)
         {
-            Debug.Log(AgentsList[i].Agent.transform.parent.gameObject.name +
-                      ", " + AgentsList[i].Agent.name + ", " + AgentsList[i].Agent.transform.position);
+            // Debug.Log(AgentsList[i].Agent.transform.parent.gameObject.name +
+            //           ", " + AgentsList[i].Agent.name + ", " + AgentsList[i].Agent.transform.position);
             if (AgentsList[i].Agent == agent)
                 continue;
 
