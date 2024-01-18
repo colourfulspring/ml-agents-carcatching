@@ -18,6 +18,8 @@ public class CarAgent : Agent
     // to this range
     public int decisionRangeRadius;
 
+    private NavMeshAgent m_AgentNavMeshAgent;  //cached on initialization
+
     protected override void Awake()
     {
         base.Awake();
@@ -32,6 +34,12 @@ public class CarAgent : Agent
             ? carCatchingEnvController.GetRandomPos() + new Vector3(0f, localY, 0f)
             : customNavigationGoal;
         // GetComponent<NavMeshAgent>().SetDestination(navigationGoal);
+    }
+
+    public override void Initialize()
+    {
+        base.Initialize();
+        m_AgentNavMeshAgent = GetComponent<NavMeshAgent>();
     }
 
     /// <summary>
@@ -104,7 +112,7 @@ public class CarAgent : Agent
 
         Debug.Log(this.transform.parent.gameObject.name +
                   ", " + this.name + "onActionReceived: navigationGoal " + navigationGoal);
-        GetComponent<NavMeshAgent>().SetDestination(navigationGoal);
+        m_AgentNavMeshAgent.SetDestination(navigationGoal);
 
         // Move the agent using the action.
         // MoveAgent(actionBuffers.DiscreteActions);

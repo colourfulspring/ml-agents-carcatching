@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Unity.MLAgents;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 public class CarCatchingEnvController : MonoBehaviour
 {
@@ -46,6 +43,8 @@ public class CarCatchingEnvController : MonoBehaviour
 
     private CarCatchingSettings m_CarCatchingSettings;
 
+    public CapturePosMap CapturePosMap;
+
     // private int m_ResetTimer;
 
     protected void Awake()
@@ -53,6 +52,7 @@ public class CarCatchingEnvController : MonoBehaviour
         // Get the ground's bounds
         areaBounds = ground.GetComponent<Collider>().bounds;
         m_CarCatchingSettings = FindObjectOfType<CarCatchingSettings>();
+        CapturePosMap = new CapturePosMap("data.json");
     }
 
     void Start()
