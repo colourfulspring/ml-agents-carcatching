@@ -1,6 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Unity.MLAgents;
+using Unity.Sentis.Layers;
 using UnityEngine;
+using UnityEngine.AI;
+using UnityEngine.Serialization;
+using Random = UnityEngine.Random;
 
 public class CarCatchingEnvController : MonoBehaviour
 {
@@ -17,13 +22,15 @@ public class CarCatchingEnvController : MonoBehaviour
         // StartingScale is used for collision detection between cars and walls during initialization
         [HideInInspector] public Vector3 StartingScale;
         [HideInInspector] public Vector3 GoalPosition;
+        [HideInInspector] public DecisionRequester DecisionRequester;
+        [HideInInspector] public NavMeshAgent NavMeshAgent;
     }
 
     /// <summary>
     /// Max Academy steps before this platform resets
     /// </summary>
     /// <returns></returns>
-    [Header("Max Environment Steps")] public int MaxEnvironmentSteps = 25000;
+    [Header("Max Environment Steps")] public int MaxEnvironmentSteps;
 
     /// <summary>
     /// The area bounds.
@@ -35,24 +42,29 @@ public class CarCatchingEnvController : MonoBehaviour
     /// </summary>
     public GameObject ground;
 
-    //List of Agents On Platform
+    /// <summary>
+    /// List of Agents On Platform.
+    /// The running agents must stay at a index that less than the catching agents.
+    /// </summary>
     public List<CarInfo> AgentsList;
+
+    /// <summary>
+    /// Agents at [0, RunningNum-1] are Running Agents, Agents at [RunningNum, AgentList.Count-1] are Catching Agents
+    /// </summary>
+    private int RunningNum;
 
     public bool UseRandomAgentRotation = true;
     public bool UseRandomAgentPosition = true;
 
     private CarCatchingSettings m_CarCatchingSettings;
 
-    public CapturePosMap CapturePosMap;
-
-    // private int m_ResetTimer;
+    public int ResetTimer;
 
     protected void Awake()
     {
         // Get the ground's bounds
         areaBounds = ground.GetComponent<Collider>().bounds;
         m_CarCatchingSettings = FindObjectOfType<CarCatchingSettings>();
-        CapturePosMap = new CapturePosMap("data.json");
     }
 
     void Start()
@@ -64,7 +76,11 @@ public class CarCatchingEnvController : MonoBehaviour
             item.StartingRot = itemTrans.rotation;
             item.StartingScale = itemTrans.localScale;
             item.GoalPosition = itemTrans.position;
+            item.DecisionRequester = item.Agent.GetComponent<DecisionRequester>();
+            item.NavMeshAgent = item.Agent.GetComponent<NavMeshAgent>();
         }
+
+        for (; RunningNum < AgentsList.Count && AgentsList[RunningNum].Agent.isRunning; ++RunningNum) ;
 
         ResetScene();
     }
@@ -97,6 +113,7 @@ public class CarCatchingEnvController : MonoBehaviour
         {
             //Global Position = ground position + x,z local position + y
             randomSpawnPos = ground.transform.position + GetRandomPos() + new Vector3(0f, localY, 0f);
+            Debug.Log( "  GetRandomSpawnPos: " + randomSpawnPos);
             if (Physics.CheckBox(randomSpawnPos, agentHalfExtents, rot) == false)
             {
                 foundNewSpawnLocation = true;
@@ -113,7 +130,8 @@ public class CarCatchingEnvController : MonoBehaviour
 
     public void ResetScene()
     {
-        // m_ResetTimer = 0;
+        Debug.Log("ResetScene:");
+        ResetTimer = 0;
 
         //Reset Agents
         foreach (var item in AgentsList)
@@ -166,5 +184,54 @@ public class CarCatchingEnvController : MonoBehaviour
             pos.y / areaBounds.extents.z);
         // Debug.Log(areaBounds.extents + " " + pos + " " + ans);
         return ans;
+    }
+
+    public void FixedUpdate()
+    {
+        // Debug.Log("Fixed Update: " + m_ResetTimer);
+
+        if (ResetTimer >= MaxEnvironmentSteps && MaxEnvironmentSteps > 0)
+        {
+            for (int i = 0; i < AgentsList.Count; ++i)
+            {
+                AgentsList[i].Agent.EndEpisode();
+            }
+            ResetScene();
+        }
+
+        // CollectObservation and onActionReceived of all Agents will be called if this condition is satisfied
+        if (ResetTimer % AgentsList[0].DecisionRequester.DecisionPeriod == 0)
+        {
+            // calculate NavMeshPath distance of all catching cars to the running car.
+            // Attention! This reward calculation process only support one running car!!!!!!!!!!!
+            Vector3 TargetPosition = AgentsList[0].Agent.transform.position;
+            NavMeshPath path = new NavMeshPath();
+            for (int i = RunningNum; i < AgentsList.Count; ++i)
+            {
+                Vector3 SourcePosition = AgentsList[i].Agent.transform.position;
+
+                // Find a path from each catching car towards the running car
+                float distance = 0;
+                if (NavMesh.CalculatePath(SourcePosition, TargetPosition, AgentsList[i].NavMeshAgent.areaMask, path))
+                {
+                    distance += Vector3.Distance(SourcePosition, path.corners[0]);
+                    for (int j = 1; j < path.corners.Length; ++j)
+                    {
+                        distance += Vector3.Distance(path.corners[j - 1], path.corners[j]);
+                    }
+                }
+                else
+                {
+                    Debug.Log("NO PATH FOUND!!!!");
+                }
+
+                float reward = -Mathf.Abs(distance) / (2 * areaBounds.extents.x + 2 * areaBounds.extents.z);
+                AgentsList[i].Agent.AddReward(reward);
+                // Debug.Log(AgentsList[i].Agent.transform.parent.gameObject.name +
+                //           ", " + AgentsList[i].Agent.name + "  Addrewards: " + reward + "   " + m_ResetTimer);
+            }
+        }
+
+        ResetTimer += 1;
     }
 }

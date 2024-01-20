@@ -328,6 +328,7 @@ GameObject:
   - component: {fileID: 8880364502379087430}
   - component: {fileID: 5601152702967375707}
   - component: {fileID: 3822330893343168228}
+  - component: {fileID: 5628194071647130095}
   m_Layer: 0
   m_Name: CarAgentGridCollab
   m_TagString: blueAgent
@@ -368,16 +369,16 @@ MonoBehaviour:
     VectorObservationSize: 8
     NumStackedVectorObservations: 1
     m_ActionSpec:
-      m_NumContinuousActions: 0
-      BranchSizes: 07000000
-    VectorActionSize: 07000000
+      m_NumContinuousActions: 2
+      BranchSizes: 
+    VectorActionSize: 02000000
     VectorActionDescriptions: []
-    VectorActionSpaceType: 0
+    VectorActionSpaceType: 1
     hasUpgradedBrainParametersWithActionSpec: 1
-  m_Model: {fileID: 0}
+  m_Model: {fileID: 5022602860645237092, guid: 59a172315f9114e31bf99d37aa432f19, type: 3}
   m_InferenceDevice: 0
-  m_BehaviorType: 1
-  m_BehaviorName: My Behavior
+  m_BehaviorType: 0
+  m_BehaviorName: Catching
   TeamId: 0
   m_UseChildSensors: 1
   m_UseChildActuators: 1
@@ -403,6 +404,7 @@ MonoBehaviour:
   useRandomNavigationGoal: 1
   customNavigationGoal: {x: 0, y: 0, z: 0}
   decisionRangeRadius: 300
+  isRunning: 0
 --- !u!114 &5601152702967375707
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -440,6 +442,27 @@ NavMeshAgent:
   m_BaseOffset: 22
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!65 &5628194071647130095
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2710286047221272849}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 45, y: 44, z: 60}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2710572731397926669
 GameObject:
   m_ObjectHideFlags: 0

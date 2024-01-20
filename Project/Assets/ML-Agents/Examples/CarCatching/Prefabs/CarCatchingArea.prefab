@@ -49,7 +49,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17c9c69066b674b49a64969b6024c25f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxEnvironmentSteps: 25000
+  MaxEnvironmentSteps: 1000
   areaBounds:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 0, y: 0, z: 0}
@@ -60,23 +60,32 @@ MonoBehaviour:
     StartingRot: {x: 0, y: 0, z: 0, w: 0}
     StartingScale: {x: 0, y: 0, z: 0}
     GoalPosition: {x: 0, y: 0, z: 0}
+    DecisionRequester: {fileID: 0}
+    NavMeshAgent: {fileID: 0}
   - Agent: {fileID: 7246486209573452180}
     StartingPos: {x: 0, y: 0, z: 0}
     StartingRot: {x: 0, y: 0, z: 0, w: 0}
     StartingScale: {x: 0, y: 0, z: 0}
     GoalPosition: {x: 0, y: 0, z: 0}
+    DecisionRequester: {fileID: 0}
+    NavMeshAgent: {fileID: 0}
   - Agent: {fileID: 3964309580746521657}
     StartingPos: {x: 0, y: 0, z: 0}
     StartingRot: {x: 0, y: 0, z: 0, w: 0}
     StartingScale: {x: 0, y: 0, z: 0}
     GoalPosition: {x: 0, y: 0, z: 0}
+    DecisionRequester: {fileID: 0}
+    NavMeshAgent: {fileID: 0}
   - Agent: {fileID: 4005891969102443327}
     StartingPos: {x: 0, y: 0, z: 0}
     StartingRot: {x: 0, y: 0, z: 0, w: 0}
     StartingScale: {x: 0, y: 0, z: 0}
     GoalPosition: {x: 0, y: 0, z: 0}
+    DecisionRequester: {fileID: 0}
+    NavMeshAgent: {fileID: 0}
   UseRandomAgentRotation: 1
   UseRandomAgentPosition: 1
+  ResetTimer: 0
 --- !u!1001 &1337287241336877277
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -94,6 +103,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: RealScene
+      objectReference: {fileID: 0}
+    - target: {fileID: 4650185164798618902, guid: 8797a13bf18c2ab48bc8b884e5d4b04d,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8789898387897546335, guid: 8797a13bf18c2ab48bc8b884e5d4b04d,
         type: 3}
@@ -578,6 +592,16 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: b0da1813c36914e678ba57f2790424e1, type: 2}
+    - target: {fileID: 8110157416270102484, guid: a431228058383324287911e110279f5a,
+        type: 3}
+      propertyPath: m_BehaviorType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8880364502379087430, guid: a431228058383324287911e110279f5a,
+        type: 3}
+      propertyPath: isRunning
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8880364502379087430, guid: a431228058383324287911e110279f5a,
         type: 3}
       propertyPath: customNavigationGoal.x

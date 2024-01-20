@@ -4,5 +4,11 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/ML-Agents/Examples/CarCatching/Scenes/CarCatching.unity
+    guid: 74e1d7b5a9ec5b64681549af8d487316
+  - enabled: 0
+    path: Assets/ML-Agents/Examples/PushBlock/Scenes/PushBlockCollab.unity
+    guid: b9c81cbb0f0ac40649eddfef0971e81b
   m_configObjects: {}
