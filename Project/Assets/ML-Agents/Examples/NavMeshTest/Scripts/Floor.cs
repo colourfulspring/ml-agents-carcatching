@@ -1,13 +1,11 @@
-using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 
-public class PlayerController : MonoBehaviour
+public class Floor : MonoBehaviour
 {
-    // Update is called once per frame
-    public Vector3 goal;
-
-    private void Awake()
+    // Start is called before the first frame update
+    void Awake()
     {
         Debug.Log(this.transform.parent.gameObject.name +
                   ", " + this.name + "  Awake: ");
@@ -19,16 +17,16 @@ public class PlayerController : MonoBehaviour
                   ", " + this.name + "  Start: ");
     }
 
-    private void Update()
+    // Update is called once per frame
+    void Update()
     {
         Debug.Log(this.transform.parent.gameObject.name +
-                  ", " + this.name + "  Start: ");
+                  ", " + this.name + "  Update: ");
     }
 
-    void FixedUpdate()
+    private void FixedUpdate()
     {
         Debug.Log(this.transform.parent.gameObject.name +
-                  ", " + this.name + "  FixedUpdate: ");
-        GetComponent<NavMeshAgent>().SetDestination(goal + this.transform.parent.position);
+                  ", " + this.name + "  Fixed Update: ");
     }
 }
