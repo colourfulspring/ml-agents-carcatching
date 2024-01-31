@@ -63,12 +63,14 @@ public class CarCatchingEnvController : MonoBehaviour
     protected void Awake()
     {
         // Get the ground's bounds
+        Debug.Log( this.name + "  Awake: ");
         areaBounds = ground.GetComponent<Collider>().bounds;
         m_CarCatchingSettings = FindObjectOfType<CarCatchingSettings>();
     }
 
     void Start()
     {
+        Debug.Log( this.name + "  Start: ");
         foreach (var item in AgentsList)
         {
             var itemTrans = item.Agent.transform;
@@ -113,7 +115,7 @@ public class CarCatchingEnvController : MonoBehaviour
         {
             //Global Position = ground position + x,z local position + y
             randomSpawnPos = ground.transform.position + GetRandomPos() + new Vector3(0f, localY, 0f);
-            Debug.Log( "  GetRandomSpawnPos: " + randomSpawnPos);
+            Debug.Log( this.name + "  GetRandomSpawnPos: " + randomSpawnPos);
             if (Physics.CheckBox(randomSpawnPos, agentHalfExtents, rot) == false)
             {
                 foundNewSpawnLocation = true;
@@ -130,7 +132,8 @@ public class CarCatchingEnvController : MonoBehaviour
 
     public void ResetScene()
     {
-        Debug.Log("ResetScene:");
+        Debug.Log( this.name + "  ResetScene: ");
+
         ResetTimer = 0;
 
         //Reset Agents
@@ -147,6 +150,8 @@ public class CarCatchingEnvController : MonoBehaviour
     //All other agents except the current one are arranged in a pre-defined order.
     public Vector2[] GetAgentPosObs(CarAgent agent)
     {
+        Debug.Log(agent.transform.parent.gameObject.name + ", " + agent.name + ", " + "GetAgentPosObs: ");
+
         Vector2[] ans = new Vector2[AgentsList.Count];
         // absolute position in the prefab of the current agent
         Vector2 agentAbsolutePos;
@@ -172,7 +177,6 @@ public class CarCatchingEnvController : MonoBehaviour
 
             ++j;
         }
-
         return ans;
     }
 
@@ -188,7 +192,7 @@ public class CarCatchingEnvController : MonoBehaviour
 
     public void FixedUpdate()
     {
-        // Debug.Log("Fixed Update: " + m_ResetTimer);
+        Debug.Log( this.name + "  FixedUpdate: " + ResetTimer + "   " + transform.position);
 
         if (ResetTimer >= MaxEnvironmentSteps && MaxEnvironmentSteps > 0)
         {
@@ -211,10 +215,10 @@ public class CarCatchingEnvController : MonoBehaviour
                 Vector3 SourcePosition = AgentsList[i].Agent.transform.position;
 
                 // Find a path from each catching car towards the running car
-                float distance = 0;
+                float distance = -(2 * areaBounds.extents.x + 2 * areaBounds.extents.z); // sentinel, so no path reward is -1
                 if (NavMesh.CalculatePath(SourcePosition, TargetPosition, AgentsList[i].NavMeshAgent.areaMask, path))
                 {
-                    distance += Vector3.Distance(SourcePosition, path.corners[0]);
+                    distance = Vector3.Distance(SourcePosition, path.corners[0]);
                     for (int j = 1; j < path.corners.Length; ++j)
                     {
                         distance += Vector3.Distance(path.corners[j - 1], path.corners[j]);
@@ -224,11 +228,14 @@ public class CarCatchingEnvController : MonoBehaviour
                 {
                     Debug.Log("NO PATH FOUND!!!!");
                 }
-
+                Debug.Log(AgentsList[i].Agent.transform.parent.gameObject.name +
+                          ", " + AgentsList[i].Agent.name + "  Distance: " + distance + "   " + ResetTimer + "   "
+                          + AgentsList[i].Agent.transform.position + "   " + AgentsList[0].Agent.transform.position);
                 float reward = -Mathf.Abs(distance) / (2 * areaBounds.extents.x + 2 * areaBounds.extents.z);
                 AgentsList[i].Agent.AddReward(reward);
-                // Debug.Log(AgentsList[i].Agent.transform.parent.gameObject.name +
-                //           ", " + AgentsList[i].Agent.name + "  Addrewards: " + reward + "   " + m_ResetTimer);
+                Debug.Log(AgentsList[i].Agent.transform.parent.gameObject.name +
+                          ", " + AgentsList[i].Agent.name + "  Addrewards: " + reward + "   " + ResetTimer + "   "
+                          + AgentsList[i].Agent.transform.position + "   " + AgentsList[0].Agent.transform.position);
             }
         }
 

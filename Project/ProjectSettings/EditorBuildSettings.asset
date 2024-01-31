@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/ML-Agents/Examples/PushBlock/Scenes/PushBlockCollab.unity
     guid: b9c81cbb0f0ac40649eddfef0971e81b
+  - enabled: 0
+    path: Assets/ML-Agents/Examples/NavMeshTest/Scenes/NevMeshTest-LargePlane.unity
+    guid: fd5f0304d821c5149b39094a90a48a4b
   m_configObjects: {}

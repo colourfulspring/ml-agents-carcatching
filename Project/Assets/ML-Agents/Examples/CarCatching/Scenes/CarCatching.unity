@@ -123,7 +123,7 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1001 &73399577
+--- !u!1001 &649965931
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -134,7 +134,7 @@ PrefabInstance:
     - target: {fileID: 1581870063183487094, guid: c94b6b03f3b44e148898302b9a26ae73,
         type: 3}
       propertyPath: m_Name
-      value: CarCatchingArea (5)
+      value: CarCatchingArea (1)
       objectReference: {fileID: 0}
     - target: {fileID: 1581870063183487094, guid: c94b6b03f3b44e148898302b9a26ae73,
         type: 3}
@@ -144,85 +144,7 @@ PrefabInstance:
     - target: {fileID: 1581870063183487095, guid: c94b6b03f3b44e148898302b9a26ae73,
         type: 3}
       propertyPath: m_RootOrder
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 1581870063183487095, guid: c94b6b03f3b44e148898302b9a26ae73,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1581870063183487095, guid: c94b6b03f3b44e148898302b9a26ae73,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -500
-      objectReference: {fileID: 0}
-    - target: {fileID: 1581870063183487095, guid: c94b6b03f3b44e148898302b9a26ae73,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1581870063183487095, guid: c94b6b03f3b44e148898302b9a26ae73,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1581870063183487095, guid: c94b6b03f3b44e148898302b9a26ae73,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1581870063183487095, guid: c94b6b03f3b44e148898302b9a26ae73,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1581870063183487095, guid: c94b6b03f3b44e148898302b9a26ae73,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1581870063183487095, guid: c94b6b03f3b44e148898302b9a26ae73,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1581870063183487095, guid: c94b6b03f3b44e148898302b9a26ae73,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1581870063183487095, guid: c94b6b03f3b44e148898302b9a26ae73,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: c94b6b03f3b44e148898302b9a26ae73, type: 3}
---- !u!1001 &126081697
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 1581870063183487094, guid: c94b6b03f3b44e148898302b9a26ae73,
-        type: 3}
-      propertyPath: m_Name
-      value: CarCatchingArea (4)
-      objectReference: {fileID: 0}
-    - target: {fileID: 1581870063183487094, guid: c94b6b03f3b44e148898302b9a26ae73,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1581870063183487095, guid: c94b6b03f3b44e148898302b9a26ae73,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 8
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1581870063183487095, guid: c94b6b03f3b44e148898302b9a26ae73,
         type: 3}
@@ -395,240 +317,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5889392e3f05b448a8a06c5def6c2dec, type: 3}
---- !u!1001 &957784253
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 1581870063183487094, guid: c94b6b03f3b44e148898302b9a26ae73,
-        type: 3}
-      propertyPath: m_Name
-      value: CarCatchingArea (3)
-      objectReference: {fileID: 0}
-    - target: {fileID: 1581870063183487094, guid: c94b6b03f3b44e148898302b9a26ae73,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1581870063183487095, guid: c94b6b03f3b44e148898302b9a26ae73,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 1581870063183487095, guid: c94b6b03f3b44e148898302b9a26ae73,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1581870063183487095, guid: c94b6b03f3b44e148898302b9a26ae73,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -300
-      objectReference: {fileID: 0}
-    - target: {fileID: 1581870063183487095, guid: c94b6b03f3b44e148898302b9a26ae73,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1581870063183487095, guid: c94b6b03f3b44e148898302b9a26ae73,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1581870063183487095, guid: c94b6b03f3b44e148898302b9a26ae73,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1581870063183487095, guid: c94b6b03f3b44e148898302b9a26ae73,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1581870063183487095, guid: c94b6b03f3b44e148898302b9a26ae73,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1581870063183487095, guid: c94b6b03f3b44e148898302b9a26ae73,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1581870063183487095, guid: c94b6b03f3b44e148898302b9a26ae73,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1581870063183487095, guid: c94b6b03f3b44e148898302b9a26ae73,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: c94b6b03f3b44e148898302b9a26ae73, type: 3}
---- !u!1001 &1124001304
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 1581870063183487094, guid: c94b6b03f3b44e148898302b9a26ae73,
-        type: 3}
-      propertyPath: m_Name
-      value: CarCatchingArea (7)
-      objectReference: {fileID: 0}
-    - target: {fileID: 1581870063183487094, guid: c94b6b03f3b44e148898302b9a26ae73,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1581870063183487095, guid: c94b6b03f3b44e148898302b9a26ae73,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: 1581870063183487095, guid: c94b6b03f3b44e148898302b9a26ae73,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1581870063183487095, guid: c94b6b03f3b44e148898302b9a26ae73,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -700
-      objectReference: {fileID: 0}
-    - target: {fileID: 1581870063183487095, guid: c94b6b03f3b44e148898302b9a26ae73,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1581870063183487095, guid: c94b6b03f3b44e148898302b9a26ae73,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1581870063183487095, guid: c94b6b03f3b44e148898302b9a26ae73,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1581870063183487095, guid: c94b6b03f3b44e148898302b9a26ae73,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1581870063183487095, guid: c94b6b03f3b44e148898302b9a26ae73,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1581870063183487095, guid: c94b6b03f3b44e148898302b9a26ae73,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1581870063183487095, guid: c94b6b03f3b44e148898302b9a26ae73,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1581870063183487095, guid: c94b6b03f3b44e148898302b9a26ae73,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: c94b6b03f3b44e148898302b9a26ae73, type: 3}
---- !u!1001 &1358467794
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 1581870063183487094, guid: c94b6b03f3b44e148898302b9a26ae73,
-        type: 3}
-      propertyPath: m_Name
-      value: CarCatchingArea (6)
-      objectReference: {fileID: 0}
-    - target: {fileID: 1581870063183487094, guid: c94b6b03f3b44e148898302b9a26ae73,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1581870063183487095, guid: c94b6b03f3b44e148898302b9a26ae73,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 1581870063183487095, guid: c94b6b03f3b44e148898302b9a26ae73,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1581870063183487095, guid: c94b6b03f3b44e148898302b9a26ae73,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -600
-      objectReference: {fileID: 0}
-    - target: {fileID: 1581870063183487095, guid: c94b6b03f3b44e148898302b9a26ae73,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1581870063183487095, guid: c94b6b03f3b44e148898302b9a26ae73,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1581870063183487095, guid: c94b6b03f3b44e148898302b9a26ae73,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1581870063183487095, guid: c94b6b03f3b44e148898302b9a26ae73,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1581870063183487095, guid: c94b6b03f3b44e148898302b9a26ae73,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1581870063183487095, guid: c94b6b03f3b44e148898302b9a26ae73,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1581870063183487095, guid: c94b6b03f3b44e148898302b9a26ae73,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1581870063183487095, guid: c94b6b03f3b44e148898302b9a26ae73,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: c94b6b03f3b44e148898302b9a26ae73, type: 3}
 --- !u!1 &1430038045
 GameObject:
   m_ObjectHideFlags: 0
@@ -712,7 +400,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 32.972, y: 0, z: 0}
---- !u!1001 &1655460121
+--- !u!1001 &1485146425
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -728,7 +416,7 @@ PrefabInstance:
     - target: {fileID: 1581870063183487094, guid: c94b6b03f3b44e148898302b9a26ae73,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1581870063183487095, guid: c94b6b03f3b44e148898302b9a26ae73,
         type: 3}
@@ -743,7 +431,7 @@ PrefabInstance:
     - target: {fileID: 1581870063183487095, guid: c94b6b03f3b44e148898302b9a26ae73,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -200
+      value: -800
       objectReference: {fileID: 0}
     - target: {fileID: 1581870063183487095, guid: c94b6b03f3b44e148898302b9a26ae73,
         type: 3}
@@ -807,6 +495,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: CarCatchingArea
+      objectReference: {fileID: 0}
+    - target: {fileID: 1581870063183487094, guid: c94b6b03f3b44e148898302b9a26ae73,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1581870063183487095, guid: c94b6b03f3b44e148898302b9a26ae73,
         type: 3}
@@ -881,84 +574,6 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 6798676144109080229, guid: c94b6b03f3b44e148898302b9a26ae73, type: 3}
     - {fileID: 5516769340758157342, guid: c94b6b03f3b44e148898302b9a26ae73, type: 3}
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: c94b6b03f3b44e148898302b9a26ae73, type: 3}
---- !u!1001 &1908582076
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 1581870063183487094, guid: c94b6b03f3b44e148898302b9a26ae73,
-        type: 3}
-      propertyPath: m_Name
-      value: CarCatchingArea (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 1581870063183487094, guid: c94b6b03f3b44e148898302b9a26ae73,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1581870063183487095, guid: c94b6b03f3b44e148898302b9a26ae73,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1581870063183487095, guid: c94b6b03f3b44e148898302b9a26ae73,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1581870063183487095, guid: c94b6b03f3b44e148898302b9a26ae73,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -100
-      objectReference: {fileID: 0}
-    - target: {fileID: 1581870063183487095, guid: c94b6b03f3b44e148898302b9a26ae73,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1581870063183487095, guid: c94b6b03f3b44e148898302b9a26ae73,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1581870063183487095, guid: c94b6b03f3b44e148898302b9a26ae73,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1581870063183487095, guid: c94b6b03f3b44e148898302b9a26ae73,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1581870063183487095, guid: c94b6b03f3b44e148898302b9a26ae73,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1581870063183487095, guid: c94b6b03f3b44e148898302b9a26ae73,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1581870063183487095, guid: c94b6b03f3b44e148898302b9a26ae73,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1581870063183487095, guid: c94b6b03f3b44e148898302b9a26ae73,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

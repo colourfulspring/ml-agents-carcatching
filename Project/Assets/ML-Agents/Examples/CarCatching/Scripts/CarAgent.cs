@@ -25,22 +25,26 @@ public class CarAgent : Agent
     protected override void Awake()
     {
         base.Awake();
+        Debug.Log(this.transform.parent.gameObject.name +
+                  ", " + this.name + "  Awake: ");
         m_CarCatchingSettings = FindObjectOfType<CarCatchingSettings>();
     }
 
     void Start()
     {
-        var localY = transform.localPosition.y; // Attention: local Y, car in prefab
+        // var localY = transform.localPosition.y; // Attention: local Y, car in prefab
 
-        var navigationGoal = useRandomNavigationGoal
-            ? carCatchingEnvController.GetRandomPos() + new Vector3(0f, localY, 0f)
-            : customNavigationGoal;
+        // var navigationGoal = useRandomNavigationGoal
+        //     ? carCatchingEnvController.GetRandomPos() + new Vector3(0f, localY, 0f)
+        //     : customNavigationGoal;
         // GetComponent<NavMeshAgent>().SetDestination(navigationGoal);
     }
 
     public override void Initialize()
     {
         base.Initialize();
+        Debug.Log(this.transform.parent.gameObject.name +
+                  ", " + this.name + "  Initialize: ");
         m_AgentNavMeshAgent = GetComponent<NavMeshAgent>();
     }
 
@@ -49,13 +53,14 @@ public class CarAgent : Agent
     /// </summary>
     public override void CollectObservations(VectorSensor sensor)
     {
-        // Debug.Log(this.transform.parent.gameObject.name +
-        //           ", " + this.name + "CollectObservations: ");
+        Debug.Log(this.transform.parent.gameObject.name +
+                  ", " + this.name + "  CollectObservations: " + carCatchingEnvController.ResetTimer);
         Vector2[] obs = carCatchingEnvController.GetAgentPosObs(this);
         foreach (var myobs in obs)
         {
+            Debug.Log(this.transform.parent.gameObject.name +
+                      ", " + this.name + "  Observations: " + myobs);
             sensor.AddObservation(myobs);
-            // Debug.Log(myobs + ",");
         }
         // sensor.AddOneHotObservation(2, 8);
     }
@@ -107,12 +112,12 @@ public class CarAgent : Agent
                   ", " + this.name + "  onActionReceived: " + rawAction + "   " + transform.position);
         var reverselyNormalizedPos2d = ReverselyNormalizePos2d(rawAction);
 
-        // Add the reversely normalized action and the cars local position (localY
-        var navigationGoal = transform.localPosition +
+        // Add the reversely normalized action and the car's global position (because setDestination accept a global target position)
+        var navigationGoal = transform.position +
                              new Vector3(reverselyNormalizedPos2d.x, 0f, reverselyNormalizedPos2d.y);
 
-        // Debug.Log(this.transform.parent.gameObject.name +
-        //           ", " + this.name + "onActionReceived: navigationGoal " + navigationGoal);
+        Debug.Log(this.transform.parent.gameObject.name +
+                  ", " + this.name + "  onActionReceived: navigationGoal " + navigationGoal);
         m_AgentNavMeshAgent.SetDestination(navigationGoal);
 
         // Move the agent using the action.
@@ -152,7 +157,7 @@ public class CarAgent : Agent
 
     public void FixedUpdate()
     {
-        // Debug.Log(this.transform.parent.gameObject.name +
-        //           ", " + this.name + "FixedUpdate: ");
+        Debug.Log(this.transform.parent.gameObject.name +
+                  ", " + this.name + "  FixedUpdate: " + carCatchingEnvController.ResetTimer + "   " + transform.position);
     }
 }
