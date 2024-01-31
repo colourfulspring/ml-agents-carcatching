@@ -21,7 +21,6 @@ public class CarCatchingEnvController : MonoBehaviour
 
         // StartingScale is used for collision detection between cars and walls during initialization
         [HideInInspector] public Vector3 StartingScale;
-        [HideInInspector] public Vector3 GoalPosition;
         [HideInInspector] public DecisionRequester DecisionRequester;
         [HideInInspector] public NavMeshAgent NavMeshAgent;
     }
@@ -77,13 +76,12 @@ public class CarCatchingEnvController : MonoBehaviour
             item.StartingPos = itemTrans.position;
             item.StartingRot = itemTrans.rotation;
             item.StartingScale = itemTrans.localScale;
-            item.GoalPosition = itemTrans.position;
             item.DecisionRequester = item.Agent.GetComponent<DecisionRequester>();
             item.NavMeshAgent = item.Agent.GetComponent<NavMeshAgent>();
         }
 
         for (; RunningNum < AgentsList.Count && AgentsList[RunningNum].Agent.isRunning; ++RunningNum) ;
-
+        // Academy.Instance.OnEnvironmentReset += ResetScene;
         ResetScene();
     }
 
@@ -113,7 +111,7 @@ public class CarCatchingEnvController : MonoBehaviour
         var agentHalfExtents = AgentsList[0].StartingScale * 0.5f;
         while (foundNewSpawnLocation == false)
         {
-            //Global Position = ground position + x,z local position + y
+            //Global Position = ground position + x,z   local position + y
             randomSpawnPos = ground.transform.position + GetRandomPos() + new Vector3(0f, localY, 0f);
             Debug.Log( this.name + "  GetRandomSpawnPos: " + randomSpawnPos);
             if (Physics.CheckBox(randomSpawnPos, agentHalfExtents, rot) == false)

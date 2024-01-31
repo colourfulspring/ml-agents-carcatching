@@ -59,28 +59,24 @@ MonoBehaviour:
     StartingPos: {x: 0, y: 0, z: 0}
     StartingRot: {x: 0, y: 0, z: 0, w: 0}
     StartingScale: {x: 0, y: 0, z: 0}
-    GoalPosition: {x: 0, y: 0, z: 0}
     DecisionRequester: {fileID: 0}
     NavMeshAgent: {fileID: 0}
   - Agent: {fileID: 7246486209573452180}
     StartingPos: {x: 0, y: 0, z: 0}
     StartingRot: {x: 0, y: 0, z: 0, w: 0}
     StartingScale: {x: 0, y: 0, z: 0}
-    GoalPosition: {x: 0, y: 0, z: 0}
     DecisionRequester: {fileID: 0}
     NavMeshAgent: {fileID: 0}
   - Agent: {fileID: 3964309580746521657}
     StartingPos: {x: 0, y: 0, z: 0}
     StartingRot: {x: 0, y: 0, z: 0, w: 0}
     StartingScale: {x: 0, y: 0, z: 0}
-    GoalPosition: {x: 0, y: 0, z: 0}
     DecisionRequester: {fileID: 0}
     NavMeshAgent: {fileID: 0}
   - Agent: {fileID: 4005891969102443327}
     StartingPos: {x: 0, y: 0, z: 0}
     StartingRot: {x: 0, y: 0, z: 0, w: 0}
     StartingScale: {x: 0, y: 0, z: 0}
-    GoalPosition: {x: 0, y: 0, z: 0}
     DecisionRequester: {fileID: 0}
     NavMeshAgent: {fileID: 0}
   UseRandomAgentRotation: 1
@@ -96,7 +92,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 9194218059880268, guid: 8797a13bf18c2ab48bc8b884e5d4b04d, type: 3}
       propertyPath: m_VoxelSize
-      value: 12.5
+      value: 7.6666665
       objectReference: {fileID: 0}
     - target: {fileID: 431764501063180419, guid: 8797a13bf18c2ab48bc8b884e5d4b04d,
         type: 3}

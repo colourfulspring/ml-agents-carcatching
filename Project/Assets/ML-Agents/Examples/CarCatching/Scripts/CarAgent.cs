@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Unity.Mathematics;
+using UnityEngine;
 using Unity.MLAgents;
 using Unity.MLAgents.Actuators;
 using Unity.MLAgents.Sensors;
@@ -107,10 +108,13 @@ public class CarAgent : Agent
     public override void OnActionReceived(ActionBuffers actionBuffers)
     {
         var rawAction = new Vector2(actionBuffers.ContinuousActions[0], actionBuffers.ContinuousActions[1]);
+        var clipAction = new Vector2(Mathf.Clamp(rawAction[0], -1f, 1f), Mathf.Clamp(rawAction[1], 0f, 1f));
 
         Debug.Log(this.transform.parent.gameObject.name +
                   ", " + this.name + "  onActionReceived: " + rawAction + "   " + transform.position);
-        var reverselyNormalizedPos2d = ReverselyNormalizePos2d(rawAction);
+
+        // var reverselyNormalizedPos2d = ReverselyNormalizePos2dCartesian(rawAction);
+        var reverselyNormalizedPos2d = ReverselyNormalizePos2dPolar(clipAction);
 
         // Add the reversely normalized action and the car's global position (because setDestination accept a global target position)
         var navigationGoal = transform.position +
@@ -124,9 +128,41 @@ public class CarAgent : Agent
         // MoveAgent(actionBuffers.DiscreteActions);
     }
 
-    public Vector2 ReverselyNormalizePos2d(Vector2 pos)
+    // This method reversely normalized pos output by neural network using Cartesian coordinate system. The car itself acts as origin.
+    // So the legal decision range is a square whose side length is decisionRangeRadius.
+    public Vector2 ReverselyNormalizePos2dCartesian(Vector2 pos)
     {
         Vector2 ans = new Vector2(pos.x * decisionRangeRadius, pos.y * decisionRangeRadius);
+        return ans;
+    }
+
+    // This method reversely normalized pos output by neural network using Polar coordinate system. The car itself acts as origin.
+    // The legal decision range is a circle never hits any obstacles.
+    public Vector2 ReverselyNormalizePos2dPolar(Vector2 pos)
+    {
+        //pos.x is normalized angle, pos.y is normalized radius
+        var normalizedAngle = pos.x;
+        var normalizedRadius = pos.y;
+
+        // non-normalized angle
+        var angle = normalizedAngle * math.PI;
+        float radius = decisionRangeRadius;
+        Vector3 dir = new Vector3(math.cos(angle), 0, math.sin(angle));
+
+        // Physics.DefaultRaycastLayers means all layers will be considered during casting except Ignore Raycast layer.
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, dir, out hit, decisionRangeRadius, Physics.DefaultRaycastLayers))
+        {
+            radius = hit.distance;
+        }
+        // non-normalized radius
+        radius = normalizedRadius * radius;
+
+        Debug.Log(this.transform.parent.gameObject.name +
+                  ", " + this.name + "  onActionReceived: polar angle " + angle + "polar radius  " + radius);
+        Vector2 ans = new Vector2(radius * math.cos(angle), radius * math.sin(angle));
+        Debug.Log(this.transform.parent.gameObject.name +
+                  ", " + this.name + "  onActionReceived: polar target " + ans);
         return ans;
     }
 
@@ -159,5 +195,10 @@ public class CarAgent : Agent
     {
         Debug.Log(this.transform.parent.gameObject.name +
                   ", " + this.name + "  FixedUpdate: " + carCatchingEnvController.ResetTimer + "   " + transform.position);
+
+        // Debug.Log( this.transform.parent.gameObject.name +
+        //            ", " + this.name + "  StepCount: " + StepCount);
+        // Debug.Log( this.transform.parent.gameObject.name +
+        //            ", " + this.name + "  CompleteEpisodes: " + CompletedEpisodes);
     }
 }

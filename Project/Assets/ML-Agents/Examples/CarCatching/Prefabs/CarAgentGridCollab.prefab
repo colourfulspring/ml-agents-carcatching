@@ -329,7 +329,7 @@ GameObject:
   - component: {fileID: 5601152702967375707}
   - component: {fileID: 3822330893343168228}
   - component: {fileID: 5628194071647130095}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: CarAgentGridCollab
   m_TagString: blueAgent
   m_Icon: {fileID: 0}
