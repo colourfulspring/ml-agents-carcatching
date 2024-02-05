@@ -23,13 +23,13 @@ public class CarAgent : Agent
 
     public bool isRunning;
 
-    protected override void Awake()
-    {
-        base.Awake();
-        Debug.Log(this.transform.parent.gameObject.name +
-                  ", " + this.name + "  Awake: ");
-        m_CarCatchingSettings = FindObjectOfType<CarCatchingSettings>();
-    }
+    // protected override void Awake()
+    // {
+    //     base.Awake();
+    //     Debug.Log(this.transform.parent.gameObject.name +
+    //               ", " + this.name + "  Awake: ");
+    //
+    // }
 
     void Start()
     {
@@ -39,6 +39,7 @@ public class CarAgent : Agent
         //     ? carCatchingEnvController.GetRandomPos() + new Vector3(0f, localY, 0f)
         //     : customNavigationGoal;
         // GetComponent<NavMeshAgent>().SetDestination(navigationGoal);
+        m_CarCatchingSettings = FindObjectOfType<CarCatchingSettings>();
     }
 
     public override void Initialize()
@@ -108,13 +109,11 @@ public class CarAgent : Agent
     public override void OnActionReceived(ActionBuffers actionBuffers)
     {
         var rawAction = new Vector2(actionBuffers.ContinuousActions[0], actionBuffers.ContinuousActions[1]);
-        var clipAction = new Vector2(Mathf.Clamp(rawAction[0], -1f, 1f), Mathf.Clamp(rawAction[1], 0f, 1f));
 
         Debug.Log(this.transform.parent.gameObject.name +
                   ", " + this.name + "  onActionReceived: " + rawAction + "   " + transform.position);
 
-        // var reverselyNormalizedPos2d = ReverselyNormalizePos2dCartesian(rawAction);
-        var reverselyNormalizedPos2d = ReverselyNormalizePos2dPolar(clipAction);
+        var reverselyNormalizedPos2d = ReverselyNormalizePos2dCartesian(rawAction);
 
         // Add the reversely normalized action and the car's global position (because setDestination accept a global target position)
         var navigationGoal = transform.position +
@@ -132,7 +131,26 @@ public class CarAgent : Agent
     // So the legal decision range is a square whose side length is decisionRangeRadius.
     public Vector2 ReverselyNormalizePos2dCartesian(Vector2 pos)
     {
-        Vector2 ans = new Vector2(pos.x * decisionRangeRadius, pos.y * decisionRangeRadius);
+        // clip action
+        pos = new Vector2(Mathf.Clamp(pos[0], -1f, 1f), Mathf.Clamp(pos[1], -1f, 1f));
+
+        //pos.x is normalized x pos, pos.y is normalized y pos
+        // unit vector of target direction
+        float radius = decisionRangeRadius;
+        Vector3 dir = new Vector3(pos.x, 0, pos.y).normalized;
+
+        // Physics.DefaultRaycastLayers means all layers will be considered during casting except Ignore Raycast layer.
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, dir, out hit, decisionRangeRadius, Physics.DefaultRaycastLayers))
+        {
+            radius = hit.distance;
+        }
+
+        Debug.Log(this.transform.parent.gameObject.name +
+                  ", " + this.name + "  onActionReceived: pos.x " + pos.x + "pos.y  " + pos.y);
+        Vector2 ans = new Vector2(radius * dir.x, radius * dir.z);
+        Debug.Log(this.transform.parent.gameObject.name +
+                  ", " + this.name + "  onActionReceived: Cartesian target " + ans);
         return ans;
     }
 
@@ -140,6 +158,8 @@ public class CarAgent : Agent
     // The legal decision range is a circle never hits any obstacles.
     public Vector2 ReverselyNormalizePos2dPolar(Vector2 pos)
     {
+        pos = new Vector2(Mathf.Clamp(pos[0], -1f, 1f), Mathf.Clamp(pos[1], 0f, 1f));
+
         //pos.x is normalized angle, pos.y is normalized radius
         var normalizedAngle = pos.x;
         var normalizedRadius = pos.y;
@@ -147,7 +167,9 @@ public class CarAgent : Agent
         // non-normalized angle
         var angle = normalizedAngle * math.PI;
         float radius = decisionRangeRadius;
-        Vector3 dir = new Vector3(math.cos(angle), 0, math.sin(angle));
+
+        // unit vector of target direction
+        Vector3 dir = new Vector3(math.cos(angle), 0, math.sin(angle)).normalized;
 
         // Physics.DefaultRaycastLayers means all layers will be considered during casting except Ignore Raycast layer.
         RaycastHit hit;
@@ -160,7 +182,7 @@ public class CarAgent : Agent
 
         Debug.Log(this.transform.parent.gameObject.name +
                   ", " + this.name + "  onActionReceived: polar angle " + angle + "polar radius  " + radius);
-        Vector2 ans = new Vector2(radius * math.cos(angle), radius * math.sin(angle));
+        Vector2 ans = new Vector2(radius * dir.x, radius * dir.z);
         Debug.Log(this.transform.parent.gameObject.name +
                   ", " + this.name + "  onActionReceived: polar target " + ans);
         return ans;

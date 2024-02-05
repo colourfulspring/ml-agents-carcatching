@@ -59,17 +59,18 @@ public class CarCatchingEnvController : MonoBehaviour
 
     public int ResetTimer;
 
-    protected void Awake()
-    {
-        // Get the ground's bounds
-        Debug.Log( this.name + "  Awake: ");
-        areaBounds = ground.GetComponent<Collider>().bounds;
-        m_CarCatchingSettings = FindObjectOfType<CarCatchingSettings>();
-    }
+    // protected void Awake()
+    // {
+    //     // Get the ground's bounds
+    //     Debug.Log( this.name + "  Awake: ");
+    //
+    // }
 
     void Start()
     {
         Debug.Log( this.name + "  Start: ");
+        areaBounds = ground.GetComponent<Collider>().bounds;
+        m_CarCatchingSettings = FindObjectOfType<CarCatchingSettings>();
         foreach (var item in AgentsList)
         {
             var itemTrans = item.Agent.transform;
@@ -213,14 +214,18 @@ public class CarCatchingEnvController : MonoBehaviour
                 Vector3 SourcePosition = AgentsList[i].Agent.transform.position;
 
                 // Find a path from each catching car towards the running car
-                float distance = -(2 * areaBounds.extents.x + 2 * areaBounds.extents.z); // sentinel, so no path reward is -1
+                float distance = -(2 * areaBounds.extents.x + 2 * areaBounds.extents.z); // sentinel, so if no path found, reward is -1
                 if (NavMesh.CalculatePath(SourcePosition, TargetPosition, AgentsList[i].NavMeshAgent.areaMask, path))
                 {
-                    distance = Vector3.Distance(SourcePosition, path.corners[0]);
+                    Debug.Log(this.name + "  sourcePosition: "  + SourcePosition + "   " + ResetTimer);
+                    Debug.Log(this.name + "  corner[0]: "  + path.corners[0] + "   " + ResetTimer);
+                    distance = 0f;
                     for (int j = 1; j < path.corners.Length; ++j)
                     {
+                        Debug.Log(this.name + "  corner[" + j + "]: "  + path.corners[j] + "   " + ResetTimer);
                         distance += Vector3.Distance(path.corners[j - 1], path.corners[j]);
                     }
+                    Debug.Log(this.name + "  targetPosition: "  + TargetPosition + "   " + ResetTimer);
                 }
                 else
                 {

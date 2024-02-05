@@ -68,7 +68,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 7.6666665
   m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 23800000, guid: 197d0862aef75c5109038480c0cf3d17, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: e472e384e854dd4c79ba675e55051496, type: 2}
   m_BuildHeightMesh: 0
 --- !u!1 &2377625989666082036
 GameObject:
@@ -648,6 +648,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: RealObs (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 8316492651206389056, guid: 2f3971b17fc050a4fb919843bbd9b402,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -726,6 +731,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: RealObs
+      objectReference: {fileID: 0}
+    - target: {fileID: 8316492651206389056, guid: 2f3971b17fc050a4fb919843bbd9b402,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
