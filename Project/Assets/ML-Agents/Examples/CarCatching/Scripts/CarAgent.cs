@@ -58,12 +58,12 @@ public class CarAgent : Agent
         Debug.Log(this.transform.parent.gameObject.name +
                   ", " + this.name + "  CollectObservations: " + carCatchingEnvController.ResetTimer);
         Vector2[] obs = carCatchingEnvController.GetAgentPosObs(this);
-        foreach (var myobs in obs)
-        {
-            Debug.Log(this.transform.parent.gameObject.name +
-                      ", " + this.name + "  Observations: " + myobs);
-            sensor.AddObservation(myobs);
-        }
+        // foreach (var myobs in obs)
+        // {
+        //     Debug.Log(this.transform.parent.gameObject.name +
+        //               ", " + this.name + "  Observations: " + myobs);
+        //     sensor.AddObservation(myobs);
+        // }
         // sensor.AddOneHotObservation(2, 8);
     }
 

@@ -34,7 +34,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &718127299357063990
 MeshFilter:
@@ -134,9 +134,9 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 7.3333335
+  m_VoxelSize: 3.3333333
   m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 23800000, guid: 767051749d8e57f35865e979b2877671, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 858817aa4f824e180a4a23ae2fdbd0b8, type: 2}
   m_BuildHeightMesh: 0
 --- !u!114 &5153898628670658174
 MonoBehaviour:
