@@ -5,7 +5,7 @@ import shutil
 source_dir = os.path.join(os.getcwd(), "results")
 
 # Destination directory where files will be copied
-destination_dir = os.path.join(os.getcwd(), "tensorboard_data_copy_01_results")
+destination_dir = os.path.join(os.getcwd(), "tensorboard_data_01_copy_results")
 
 # Find all files in the source directory starting with "events"
 files = []

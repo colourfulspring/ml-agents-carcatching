@@ -28,10 +28,10 @@ def convert_to_json(events_file_path, output_json_path):
 if __name__ == "__main__":
    
     # Source directory where files are located
-    source_dir = os.path.join(os.getcwd(), "tensorboard_data_copy_01_results")
+    source_dir = os.path.join(os.getcwd(), "tensorboard_data_01_copy_results")
 
     # Destination directory where files will be copied
-    destination_dir = os.path.join(os.getcwd(), "tensorboard_data_json_02_results")
+    destination_dir = os.path.join(os.getcwd(), "tensorboard_data_02_json_results")
 
     # Find all files in the source directory starting with "events"
     files = []
