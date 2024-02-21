@@ -21,7 +21,7 @@ if __name__ == "__main__":
             files.append(os.path.join(root, filename))
 
     # 设置样式
-    sns.set_theme(context='paper', style='darkgrid')
+    sns.set_theme(context='paper', style="whitegrid", font_scale=2)
 
     # Loop through each file found
     for num, file_path in enumerate(files):
@@ -43,7 +43,7 @@ if __name__ == "__main__":
         # Create the corresponding directory structure in the destination directory
         os.makedirs(os.path.join(destination_dir, relative_dir), exist_ok=True)
 
-        sns.lineplot(x="Step", y="Value", data=df, hue="Legend", errorbar=('sd', 1))
+        sns.lineplot(x="Step", y="Value", data=df, hue="Legend", errorbar='sd')
 
         # Define the new filename with '.jpg' extension
         jpg_filename = os.path.splitext(os.path.basename(file_path))[0] + '.jpg'
@@ -51,7 +51,6 @@ if __name__ == "__main__":
         # Add labels and title
         plt.xlabel('Step')
         plt.ylabel('Cumulative Reward')
-        plt.title('Line Plot of Step vs Cumulative Reward')
 
         # Show grid
         plt.grid(True)
