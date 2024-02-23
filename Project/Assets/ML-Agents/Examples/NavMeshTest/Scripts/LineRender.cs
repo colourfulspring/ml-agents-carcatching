@@ -23,7 +23,6 @@ public class LineRender : MonoBehaviour
     private void Update()
     {
         Vector3 currentPosition = transform.position;
-        currentPosition.y = 0f;
 
         if (Vector3.Distance(currentPosition, previousPosition) > minDistance)
         {
