@@ -45,8 +45,8 @@ if __name__ == "__main__":
 
         sns.lineplot(x="Step", y="Value", data=df, hue="Legend", errorbar='sd')
 
-        # Define the new filename with '.jpg' extension
-        jpg_filename = os.path.splitext(os.path.basename(file_path))[0] + '.jpg'
+        # Define the new filename with '.png' extension
+        png_filename = os.path.splitext(os.path.basename(file_path))[0] + '.png'
 
         # Add labels and title
         plt.xlabel('Step')
@@ -58,8 +58,8 @@ if __name__ == "__main__":
         # Add legend
         plt.legend()
 
-        # Save the plot as a JPG file
-        plt.savefig(os.path.join(destination_dir, jpg_filename), format='jpg')
+        # Save the plot as a png file
+        plt.savefig(os.path.join(destination_dir, png_filename), format='png')
 
         print(f"Plot {file_path}")
 
