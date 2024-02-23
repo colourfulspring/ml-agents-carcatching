@@ -23,6 +23,7 @@ public class CarCatchingEnvController : MonoBehaviour
         [HideInInspector] public Vector3 StartingScale;
         [HideInInspector] public DecisionRequester DecisionRequester;
         [HideInInspector] public NavMeshAgent NavMeshAgent;
+        [HideInInspector] public LineRenderer LineRenderer;
     }
 
     /// <summary>
@@ -79,6 +80,7 @@ public class CarCatchingEnvController : MonoBehaviour
             item.StartingScale = itemTrans.localScale;
             item.DecisionRequester = item.Agent.GetComponent<DecisionRequester>();
             item.NavMeshAgent = item.Agent.GetComponent<NavMeshAgent>();
+            item.LineRenderer = item.Agent.GetComponent<LineRenderer>();
         }
 
         for (; RunningNum < AgentsList.Count && AgentsList[RunningNum].Agent.isRunning; ++RunningNum) ;
@@ -142,6 +144,7 @@ public class CarCatchingEnvController : MonoBehaviour
             var pos = UseRandomAgentPosition ? GetRandomSpawnPos(rot) : item.StartingPos;
 
             item.Agent.transform.SetPositionAndRotation(pos, rot);
+            item.LineRenderer.positionCount = 0;
         }
     }
 

@@ -61,24 +61,28 @@ MonoBehaviour:
     StartingScale: {x: 0, y: 0, z: 0}
     DecisionRequester: {fileID: 0}
     NavMeshAgent: {fileID: 0}
+    LineRenderer: {fileID: 0}
   - Agent: {fileID: 7246486209573452180}
     StartingPos: {x: 0, y: 0, z: 0}
     StartingRot: {x: 0, y: 0, z: 0, w: 0}
     StartingScale: {x: 0, y: 0, z: 0}
     DecisionRequester: {fileID: 0}
     NavMeshAgent: {fileID: 0}
+    LineRenderer: {fileID: 0}
   - Agent: {fileID: 3964309580746521657}
     StartingPos: {x: 0, y: 0, z: 0}
     StartingRot: {x: 0, y: 0, z: 0, w: 0}
     StartingScale: {x: 0, y: 0, z: 0}
     DecisionRequester: {fileID: 0}
     NavMeshAgent: {fileID: 0}
+    LineRenderer: {fileID: 0}
   - Agent: {fileID: 4005891969102443327}
     StartingPos: {x: 0, y: 0, z: 0}
     StartingRot: {x: 0, y: 0, z: 0, w: 0}
     StartingScale: {x: 0, y: 0, z: 0}
     DecisionRequester: {fileID: 0}
     NavMeshAgent: {fileID: 0}
+    LineRenderer: {fileID: 0}
   UseRandomAgentRotation: 1
   UseRandomAgentPosition: 1
   ResetTimer: 0
@@ -406,11 +410,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1581870063183487095}
     m_Modifications:
-    - target: {fileID: 1548337883655231979, guid: a431228058383324287911e110279f5a,
-        type: 3}
-      propertyPath: m_ShowGizmos
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2708762399863795223, guid: a431228058383324287911e110279f5a,
         type: 3}
       propertyPath: m_RootOrder
@@ -602,6 +601,11 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6387908156284689739, guid: a431228058383324287911e110279f5a,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 524edbe6e93be4be3bcce154cad79235, type: 2}
     - target: {fileID: 8110157416270102484, guid: a431228058383324287911e110279f5a,
         type: 3}
       propertyPath: m_Model

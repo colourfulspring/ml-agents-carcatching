@@ -9,7 +9,7 @@ public class LineRender : MonoBehaviour
     private LineRenderer line;
     private Vector3 previousPosition;
     [SerializeField] private float minDistance = 0.1f;
-    [SerializeField, Range(0f, 20f)] private float width = 2f;
+    [SerializeField, Range(0f, 20f)] private float width = 5f;
 
     private void Start()
     {

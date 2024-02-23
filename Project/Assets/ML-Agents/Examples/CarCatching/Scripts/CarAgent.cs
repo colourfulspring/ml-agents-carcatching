@@ -4,6 +4,7 @@ using Unity.MLAgents;
 using Unity.MLAgents.Actuators;
 using Unity.MLAgents.Sensors;
 using UnityEngine.AI;
+using Random = UnityEngine.Random;
 
 public class CarAgent : Agent
 {
@@ -58,12 +59,12 @@ public class CarAgent : Agent
         Debug.Log(this.transform.parent.gameObject.name +
                   ", " + this.name + "  CollectObservations: " + carCatchingEnvController.ResetTimer);
         Vector2[] obs = carCatchingEnvController.GetAgentPosObs(this);
-        // foreach (var myobs in obs)
-        // {
-        //     Debug.Log(this.transform.parent.gameObject.name +
-        //               ", " + this.name + "  Observations: " + myobs);
-        //     sensor.AddObservation(myobs);
-        // }
+        foreach (var myobs in obs)
+        {
+            Debug.Log(this.transform.parent.gameObject.name +
+                      ", " + this.name + "  Observations: " + myobs);
+            sensor.AddObservation(myobs);
+        }
         // sensor.AddOneHotObservation(2, 8);
     }
 
@@ -209,8 +210,10 @@ public class CarAgent : Agent
         //     discreteActionsOut[0] = 2;
         // }
         var continuousActionsOut = actionsOut.ContinuousActions;
-        continuousActionsOut[0] = 0f;
-        continuousActionsOut[1] = 0f;
+        // continuousActionsOut[0] = 0f;
+        // continuousActionsOut[1] = 0f;
+        continuousActionsOut[0] = Random.Range(-1f,1f);
+        continuousActionsOut[1] = Random.Range(-1f, 1f);
     }
 
     public void FixedUpdate()
