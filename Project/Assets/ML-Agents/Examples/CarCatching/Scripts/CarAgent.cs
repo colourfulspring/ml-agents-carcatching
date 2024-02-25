@@ -20,7 +20,7 @@ public class CarAgent : Agent
     // to this range
     public int decisionRangeRadius;
 
-    private NavMeshAgent m_AgentNavMeshAgent;  //cached on initialization
+    private NavMeshAgent m_AgentNavMeshAgent; //cached on initialization
 
     public bool isRunning;
 
@@ -178,6 +178,7 @@ public class CarAgent : Agent
         {
             radius = hit.distance;
         }
+
         // non-normalized radius
         radius = normalizedRadius * radius;
 
@@ -210,16 +211,17 @@ public class CarAgent : Agent
         //     discreteActionsOut[0] = 2;
         // }
         var continuousActionsOut = actionsOut.ContinuousActions;
-        // continuousActionsOut[0] = 0f;
-        // continuousActionsOut[1] = 0f;
-        continuousActionsOut[0] = Random.Range(-1f,1f);
-        continuousActionsOut[1] = Random.Range(-1f, 1f);
+        continuousActionsOut[0] = 0f;
+        continuousActionsOut[1] = 0f;
+        // continuousActionsOut[0] = Random.Range(-1f, 1f);
+        // continuousActionsOut[1] = Random.Range(-1f, 1f);
     }
 
     public void FixedUpdate()
     {
         Debug.Log(this.transform.parent.gameObject.name +
-                  ", " + this.name + "  FixedUpdate: " + carCatchingEnvController.ResetTimer + "   " + transform.position);
+                  ", " + this.name + "  FixedUpdate: " + carCatchingEnvController.ResetTimer + "   " +
+                  transform.position);
 
         // Debug.Log( this.transform.parent.gameObject.name +
         //            ", " + this.name + "  StepCount: " + StepCount);
