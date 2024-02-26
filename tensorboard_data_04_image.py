@@ -26,7 +26,7 @@ if __name__ == "__main__":
     # Loop through each file found
     for num, file_path in enumerate(files):
         # Create a line plot
-        plt.figure(figsize=(10, 8))
+        plt.figure(figsize=(10, 6))
 
         # Get the directory where the file is located relative to the source directory
         relative_dir = os.path.relpath(os.path.dirname(file_path), source_dir)
