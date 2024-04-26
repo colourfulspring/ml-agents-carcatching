@@ -12,7 +12,7 @@
 * Open a terminal and change directory to the root path of this repo. Activate the Python environment with MLAgents.
 * Run this commands
 ```
-mlagents-learn config/Catching.yaml --env=./Builds/CarCatching/CarCatching.x86_64 --run-id=v8.0.0 --width=2000 --height=1000
+mlagents-learn config/ppo/Catching.yaml --env=./Builds/CarCatching/CarCatching.x86_64 --run-id=v8.0.0 --width=2000 --height=1000
 
 ```
 
