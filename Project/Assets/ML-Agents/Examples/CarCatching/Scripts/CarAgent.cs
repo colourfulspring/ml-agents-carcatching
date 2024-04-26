@@ -141,11 +141,11 @@ public class CarAgent : Agent
         Vector3 dir = new Vector3(pos.x, 0, pos.y).normalized;
 
         // Physics.DefaultRaycastLayers means all layers will be considered during casting except Ignore Raycast layer.
-        // RaycastHit hit;
-        // if (Physics.Raycast(transform.position, dir, out hit, decisionRangeRadius, Physics.DefaultRaycastLayers))
-        // {
-        //     radius = hit.distance;
-        // }
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, dir, out hit, decisionRangeRadius, Physics.DefaultRaycastLayers))
+        {
+            radius = hit.distance;
+        }
 
         Debug.Log(this.transform.parent.gameObject.name +
                   ", " + this.name + "  onActionReceived: pos.x " + pos.x + "pos.y  " + pos.y);
@@ -211,10 +211,10 @@ public class CarAgent : Agent
         //     discreteActionsOut[0] = 2;
         // }
         var continuousActionsOut = actionsOut.ContinuousActions;
-        continuousActionsOut[0] = 0f;
-        continuousActionsOut[1] = 0f;
-        // continuousActionsOut[0] = Random.Range(-1f, 1f);
-        // continuousActionsOut[1] = Random.Range(-1f, 1f);
+        // continuousActionsOut[0] = 0f;
+        // continuousActionsOut[1] = 0f;
+        continuousActionsOut[0] = Random.Range(-1f, 1f);
+        continuousActionsOut[1] = Random.Range(-1f, 1f);
     }
 
     public void FixedUpdate()

@@ -611,12 +611,41 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 524edbe6e93be4be3bcce154cad79235, type: 2}
+    - target: {fileID: 6387908156284689739, guid: a431228058383324287911e110279f5a,
+        type: 3}
+      propertyPath: m_Parameters.colorGradient.key0.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6387908156284689739, guid: a431228058383324287911e110279f5a,
+        type: 3}
+      propertyPath: m_Parameters.colorGradient.key0.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6387908156284689739, guid: a431228058383324287911e110279f5a,
+        type: 3}
+      propertyPath: m_Parameters.colorGradient.key0.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6387908156284689739, guid: a431228058383324287911e110279f5a,
+        type: 3}
+      propertyPath: m_Parameters.colorGradient.key1.b
+      value: 0.78431374
+      objectReference: {fileID: 0}
+    - target: {fileID: 6387908156284689739, guid: a431228058383324287911e110279f5a,
+        type: 3}
+      propertyPath: m_Parameters.colorGradient.key1.g
+      value: 0.42745098
+      objectReference: {fileID: 0}
+    - target: {fileID: 6387908156284689739, guid: a431228058383324287911e110279f5a,
+        type: 3}
+      propertyPath: m_Parameters.colorGradient.key1.r
+      value: 0.5529412
+      objectReference: {fileID: 0}
     - target: {fileID: 8110157416270102484, guid: a431228058383324287911e110279f5a,
         type: 3}
       propertyPath: m_Model
       value: 
-      objectReference: {fileID: 5022602860645237092, guid: 726ec16aea5d20ea395b545ac6d82435,
-        type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 8110157416270102484, guid: a431228058383324287911e110279f5a,
         type: 3}
       propertyPath: m_BehaviorType

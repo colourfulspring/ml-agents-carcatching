@@ -330,7 +330,7 @@ GameObject:
   - component: {fileID: 3822330893343168228}
   - component: {fileID: 5628194071647130095}
   - component: {fileID: 6387908156284689739}
-  - component: {fileID: 2645550221542489290}
+  - component: {fileID: 5415720019812740737}
   m_Layer: 2
   m_Name: CarAgentGridCollab
   m_TagString: blueAgent
@@ -473,7 +473,7 @@ LineRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2710286047221272849}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -530,8 +530,8 @@ LineRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 1, g: 1, b: 1, a: 1}
-      key1: {r: 1, g: 1, b: 1, a: 1}
+      key0: {r: 1, g: 1, b: 1, a: 0}
+      key1: {r: 0.12941177, g: 0.5882353, b: 0.9529412, a: 1}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}
@@ -555,7 +555,7 @@ LineRenderer:
       atime6: 0
       atime7: 0
       m_Mode: 0
-      m_ColorSpace: -1
+      m_ColorSpace: 0
       m_NumColorKeys: 2
       m_NumAlphaKeys: 2
     numCornerVertices: 0
@@ -569,20 +569,20 @@ LineRenderer:
   m_UseWorldSpace: 1
   m_Loop: 0
   m_ApplyActiveColorSpace: 1
---- !u!114 &2645550221542489290
+--- !u!114 &5415720019812740737
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2710286047221272849}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: de79dcaa17358444fa44202c1787e270, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   minDistance: 0.1
-  width: 5
+  width: 10
 --- !u!1 &2710572731397926669
 GameObject:
   m_ObjectHideFlags: 0
