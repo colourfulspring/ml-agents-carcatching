@@ -10,6 +10,11 @@
 * Install MLAgents Python and MLAgents Unity extension based on the steps at [this link](https://gitee.com/capacito/ml-agents-carcatching/blob/main/docs/Installation.md).
 * Click "File->Build Settings". In the opening window, we choose the scene we want to build in "Scenes in build". Then we choose the target platform. Finally, we click the Build button at bottom right.
 * Open a terminal and change directory to the root path of this repo. Activate the Python environment with MLAgents.
+* Run this commands
+```
+mlagents-learn config/Catching.yaml --env=./Builds/CarCatching/CarCatching.x86_64 --run-id=v8.0.0 --width=2000 --height=1000
+
+```
 
 
 # Note
