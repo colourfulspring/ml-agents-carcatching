@@ -3,10 +3,16 @@
 * Install Unity Hub based on the instruction of [this link](https://docs.unity3d.com/hub/manual/InstallHub.html).
 * Install Unity 2022.3.4f1 in Unity Hub at [this link](https://unity.com/releases/editor/archive). Find the currect version in the list and click the blue button with text "Unity Hub".
 * Add the path '/Project' as a new project in the Unity Hub. Then open the project.
-* In the explorer below the Project panel, enter the path "Assets/ML-Agents/Examples/CarCatching/Scenes". Then drag the CarCatching.unity file to the Hierarchical panel at the top left corner.
+* In the explorer below the Project panel, enter the path "Assets/ML-Agents/Examples/CarCatching/Scenes". Then drag the CarCatching.unity file to the Hierarchical panel at top left.
 * Click the Play button at top middle place. It's icon is "▷" . Then you will see three agent robots(blue) are catching one enemy robot(purple).
 
+# Training
+* Install MLAgents Python and MLAgents Unity extension based on the steps at [this link](https://gitee.com/capacito/ml-agents-carcatching/blob/main/docs/Installation.md).
+* Click "File->Build Settings". In the opening window, we choose the scene we want to build in "Scenes in build". Then we choose the target platform. Finally, we click the Build button at bottom right.
+* Open a terminal and change directory to the root path of this repo. Activate the Python environment with MLAgents.
 
+
+# Note
 Below the seperating line are the original README of Unity MLAgents Toolkit.
 
 ---
