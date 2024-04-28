@@ -19,7 +19,7 @@ mlagents-learn config/ppo/Catching.yaml --env=./Builds/CarCatching/CarCatching.x
 * If you run the above command for many times, please change the '--run-id=v8.0.0' to other run-ids.
 
 # Note
-* Those files and directories whose names begin with "tensorboard_" are python scripts used to draw the images in the paper's experiment section.
+* Those python files whose names begin with "tensorboard_" are python scripts used to draw the images in the paper's experiment section.
 * Below the seperating line are the original README of Unity MLAgents Toolkit.
 
 ---
