@@ -33,7 +33,7 @@ if __name__ == "__main__":
                 files.append(os.path.join(root, filename))
     
     # Legend labelstensorboard_data_03_csv.py
-    legend_labels = {'v6.1.0': 'Descartes action', 'v6.0.0': 'Polar action'}
+    legend_labels = {'v6.1.0': 'Cartesian action', 'v6.0.0': 'Polar action'}
 
     # Create an empty DataFrame with three columns
     df = pd.DataFrame(columns=['Step', 'Value', 'Legend'])

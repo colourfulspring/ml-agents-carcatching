@@ -21,7 +21,7 @@ if __name__ == "__main__":
             files.append(os.path.join(root, filename))
 
     # 设置样式
-    sns.set_theme(context='paper', style="whitegrid", font_scale=2)
+    sns.set_theme(context='paper', style="whitegrid", font_scale=2, rc={"font.weight": "bold"})
 
     # Loop through each file found
     for num, file_path in enumerate(files):
@@ -49,8 +49,8 @@ if __name__ == "__main__":
         png_filename = os.path.splitext(os.path.basename(file_path))[0] + '.png'
 
         # Add labels and title
-        plt.xlabel('Step')
-        plt.ylabel('Cumulative Reward')
+        plt.xlabel('Step', fontweight='bold')
+        plt.ylabel('Cumulative Reward', fontweight='bold')
 
         # Show grid
         plt.grid(True)
