@@ -8,7 +8,7 @@
 ![An example of trajectory](images/Fig8.png)
 
 # Training
-* Install MLAgents Python and MLAgents Unity extension based on the steps at [this link](https://gitee.com/capacito/ml-agents-carcatching/blob/main/docs/Installation.md).
+* Install MLAgents Python and MLAgents Unity extension based on the steps at [this link](https://github.com/colourfulspring/ml-agents-carcatching/blob/main/docs/Installation.md).
 * Click "File->Build Settings". In the opening window, choose the scene 'ML-Agents/Examples/CarCatching/Scenes/CarCartching' in "Scenes in build". Then choose the target platform. Finally, click the Build button at bottom right.
 * Open a terminal and change directory to the root path of this repo. If you use conda, then activate the Python environment with MLAgents.
 * Run this command to training
