@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections;
 using Unity.MLAgents;
 using Unity.Sentis.Layers;
 using UnityEngine;
@@ -22,9 +23,11 @@ public class CarCatchingEnvController : MonoBehaviour
         // StartingScale is used for collision detection between cars and walls during initialization
         [HideInInspector] public Vector3 StartingScale;
         [HideInInspector] public DecisionRequester DecisionRequester;
-        [HideInInspector] public NavMeshAgent NavMeshAgent;
+        // [HideInInspector] public NavMeshAgent NavMeshAgent;
         [HideInInspector] public LineRenderer LineRenderer;
     }
+
+    private CarCatchingSettings m_CarCatchingSettings;
 
     /// <summary>
     /// Max Academy steps before this platform resets
@@ -56,8 +59,6 @@ public class CarCatchingEnvController : MonoBehaviour
     public bool UseRandomAgentRotation = true;
     public bool UseRandomAgentPosition = true;
 
-    private CarCatchingSettings m_CarCatchingSettings;
-
     public int ResetTimer;
 
     // protected void Awake()
@@ -79,13 +80,53 @@ public class CarCatchingEnvController : MonoBehaviour
             item.StartingRot = itemTrans.rotation;
             item.StartingScale = itemTrans.localScale;
             item.DecisionRequester = item.Agent.GetComponent<DecisionRequester>();
-            item.NavMeshAgent = item.Agent.GetComponent<NavMeshAgent>();
             item.LineRenderer = item.Agent.GetComponent<LineRenderer>();
         }
 
         for (; RunningNum < AgentsList.Count && AgentsList[RunningNum].Agent.isRunning; ++RunningNum) ;
-        // Academy.Instance.OnEnvironmentReset += ResetScene;
-        ResetScene();
+        var dataList = m_CarCatchingSettings.trajList.TrajDataList;
+        MoveCarsPerTimestamp(dataList, 0);
+        // StartCoroutine(MoveCarsForever());
+    }
+
+    void MoveCarsPerTimestamp(List<Tuple<int, float[,]>> dataList, int timestamp)
+    {
+        for (int j = 0; j < dataList[timestamp].Item2.GetLength(0); ++j)
+        {
+            var x = dataList[timestamp].Item2[j, 0];
+            var z = dataList[timestamp].Item2[j, 1];
+            var theta = dataList[timestamp].Item2[j, 2];
+
+            x *= areaBounds.extents.x;
+            z *= areaBounds.extents.z;
+
+            var pos = AgentsList[j].Agent.transform.localPosition;
+            pos = new Vector3(x, pos.y, z);
+            AgentsList[j].Agent.transform.localPosition = pos;
+
+            var rot = AgentsList[j].Agent.transform.localRotation;
+            rot = Quaternion.Euler(rot.x, theta*Mathf.Rad2Deg, rot.z);
+            AgentsList[j].Agent.transform.localRotation = rot;
+        }
+    }
+
+    IEnumerator MoveCarsForever()
+    {
+        var dataList = m_CarCatchingSettings.trajList.TrajDataList;
+        Debug.Log("total periods: " + dataList.Count);
+        Debug.Log( "area bounds: " + areaBounds.center + ", " + areaBounds.extents);
+        Debug.Log("car number: " + dataList[0].Item2.GetLength(0));
+        Debug.Log("coordinate dim: " + dataList[0].Item2.GetLength(1));
+
+        for (int i = 1; ; )
+        {
+            yield return new WaitForSeconds(dataList[i - 1].Item1 * 0.001f);
+            MoveCarsPerTimestamp(dataList, i);
+            // Debug.Log("period " + i + ": " + dataList[i].Item1);
+
+            if (i < dataList.Count) // infinite loop
+                ++i;
+        }
     }
 
     /// <summary>
@@ -152,7 +193,7 @@ public class CarCatchingEnvController : MonoBehaviour
     //All other agents except the current one are arranged in a pre-defined order.
     public Vector2[] GetAgentPosObs(CarAgent agent)
     {
-        Debug.Log(agent.transform.parent.gameObject.name + ", " + agent.name + ", " + "GetAgentPosObs: ");
+        // Debug.Log(agent.transform.parent.gameObject.name + ", " + agent.name + ", " + "GetAgentPosObs: ");
 
         Vector2[] ans = new Vector2[AgentsList.Count];
         // absolute position in the prefab of the current agent
@@ -194,57 +235,41 @@ public class CarCatchingEnvController : MonoBehaviour
 
     public void FixedUpdate()
     {
-        Debug.Log( this.name + "  FixedUpdate: " + ResetTimer + "   " + transform.position);
-
-        if (ResetTimer >= MaxEnvironmentSteps && MaxEnvironmentSteps > 0)
-        {
-            for (int i = 0; i < AgentsList.Count; ++i)
-            {
-                AgentsList[i].Agent.EndEpisode();
-            }
-            ResetScene();
-        }
-
-        // CollectObservation and onActionReceived of all Agents will be called if this condition is satisfied
-        if (ResetTimer % AgentsList[0].DecisionRequester.DecisionPeriod == 0)
-        {
-            // calculate NavMeshPath distance of all catching cars to the running car.
-            // Attention! This reward calculation process only support one running car!!!!!!!!!!!
-            Vector3 TargetPosition = AgentsList[0].Agent.transform.position;
-            NavMeshPath path = new NavMeshPath();
-            for (int i = RunningNum; i < AgentsList.Count; ++i)
-            {
-                Vector3 SourcePosition = AgentsList[i].Agent.transform.position;
-
-                // Find a path from each catching car towards the running car
-                float distance = -(2 * areaBounds.extents.x + 2 * areaBounds.extents.z); // sentinel, so if no path found, reward is -1
-                if (NavMesh.CalculatePath(SourcePosition, TargetPosition, AgentsList[i].NavMeshAgent.areaMask, path))
-                {
-                    Debug.Log(this.name + "  sourcePosition: "  + SourcePosition + "   " + ResetTimer);
-                    Debug.Log(this.name + "  corner[0]: "  + path.corners[0] + "   " + ResetTimer);
-                    distance = 0f;
-                    for (int j = 1; j < path.corners.Length; ++j)
-                    {
-                        Debug.Log(this.name + "  corner[" + j + "]: "  + path.corners[j] + "   " + ResetTimer);
-                        distance += Vector3.Distance(path.corners[j - 1], path.corners[j]);
-                    }
-                    Debug.Log(this.name + "  targetPosition: "  + TargetPosition + "   " + ResetTimer);
-                }
-                else
-                {
-                    Debug.Log("NO PATH FOUND!!!!");
-                }
-                Debug.Log(AgentsList[i].Agent.transform.parent.gameObject.name +
-                          ", " + AgentsList[i].Agent.name + "  Distance: " + distance + "   " + ResetTimer + "   "
-                          + AgentsList[i].Agent.transform.position + "   " + AgentsList[0].Agent.transform.position);
-                float reward = -Mathf.Abs(distance) / (2 * areaBounds.extents.x + 2 * areaBounds.extents.z);
-                AgentsList[i].Agent.AddReward(reward);
-                Debug.Log(AgentsList[i].Agent.transform.parent.gameObject.name +
-                          ", " + AgentsList[i].Agent.name + "  Addrewards: " + reward + "   " + ResetTimer + "   "
-                          + AgentsList[i].Agent.transform.position + "   " + AgentsList[0].Agent.transform.position);
-            }
-        }
-
-        ResetTimer += 1;
+        // Debug.Log( this.name + "  FixedUpdate: " + ResetTimer + "   " + transform.position);
+        //
+        // if (ResetTimer >= MaxEnvironmentSteps && MaxEnvironmentSteps > 0)
+        // {
+        //     for (int i = 0; i < AgentsList.Count; ++i)
+        //     {
+        //         AgentsList[i].Agent.EndEpisode();
+        //     }
+        // }
+        //
+        // // CollectObservation and onActionReceived of all Agents will be called if this condition is satisfied
+        // if (ResetTimer % AgentsList[0].DecisionRequester.DecisionPeriod == 0)
+        // {
+        //     // calculate NavMeshPath distance of all catching cars to the running car.
+        //     // Attention! This reward calculation process only support one running car!!!!!!!!!!!
+        //     Vector3 TargetPosition = AgentsList[0].Agent.transform.position;
+        //     NavMeshPath path = new NavMeshPath();
+        //     for (int i = RunningNum; i < AgentsList.Count; ++i)
+        //     {
+        //         Vector3 SourcePosition = AgentsList[i].Agent.transform.position;
+        //
+        //         // Find a path from each catching car towards the running car
+        //         float distance = -(2 * areaBounds.extents.x + 2 * areaBounds.extents.z); // sentinel, so if no path found, reward is -1
+        //
+        //         Debug.Log(AgentsList[i].Agent.transform.parent.gameObject.name +
+        //                   ", " + AgentsList[i].Agent.name + "  Distance: " + distance + "   " + ResetTimer + "   "
+        //                   + AgentsList[i].Agent.transform.position + "   " + AgentsList[0].Agent.transform.position);
+        //         float reward = -Mathf.Abs(distance) / (2 * areaBounds.extents.x + 2 * areaBounds.extents.z);
+        //         AgentsList[i].Agent.AddReward(reward);
+        //         Debug.Log(AgentsList[i].Agent.transform.parent.gameObject.name +
+        //                   ", " + AgentsList[i].Agent.name + "  Addrewards: " + reward + "   " + ResetTimer + "   "
+        //                   + AgentsList[i].Agent.transform.position + "   " + AgentsList[0].Agent.transform.position);
+        //     }
+        // }
+        //
+        // ResetTimer += 1;
     }
 }

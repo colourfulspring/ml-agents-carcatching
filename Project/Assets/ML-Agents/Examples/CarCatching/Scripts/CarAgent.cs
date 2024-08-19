@@ -13,14 +13,9 @@ public class CarAgent : Agent
 
     public bool useRandomNavigationGoal;
 
-    // The user specified goal of NavMeshAgent
-    public Vector3 customNavigationGoal;
-
     // The radius of the decision range. We inversely normalize the output of neural network
     // to this range
     public int decisionRangeRadius;
-
-    private NavMeshAgent m_AgentNavMeshAgent; //cached on initialization
 
     public bool isRunning;
 
@@ -34,6 +29,8 @@ public class CarAgent : Agent
 
     void Start()
     {
+        Debug.Log(this.transform.parent.gameObject.name +
+                  ", " + this.name + "  Awake: ");
         // var localY = transform.localPosition.y; // Attention: local Y, car in prefab
 
         // var navigationGoal = useRandomNavigationGoal
@@ -45,10 +42,9 @@ public class CarAgent : Agent
 
     public override void Initialize()
     {
-        base.Initialize();
-        Debug.Log(this.transform.parent.gameObject.name +
-                  ", " + this.name + "  Initialize: ");
-        m_AgentNavMeshAgent = GetComponent<NavMeshAgent>();
+        // base.Initialize();
+        // Debug.Log(this.transform.parent.gameObject.name +
+        //           ", " + this.name + "  Initialize: ");
     }
 
     /// <summary>
@@ -56,13 +52,13 @@ public class CarAgent : Agent
     /// </summary>
     public override void CollectObservations(VectorSensor sensor)
     {
-        Debug.Log(this.transform.parent.gameObject.name +
-                  ", " + this.name + "  CollectObservations: " + carCatchingEnvController.ResetTimer);
+        // Debug.Log(this.transform.parent.gameObject.name +
+        //           ", " + this.name + "  CollectObservations: " + carCatchingEnvController.ResetTimer);
         Vector2[] obs = carCatchingEnvController.GetAgentPosObs(this);
         foreach (var myobs in obs)
         {
-            Debug.Log(this.transform.parent.gameObject.name +
-                      ", " + this.name + "  Observations: " + myobs);
+            // Debug.Log(this.transform.parent.gameObject.name +
+            //           ", " + this.name + "  Observations: " + myobs);
             sensor.AddObservation(myobs);
         }
         // sensor.AddOneHotObservation(2, 8);
@@ -109,20 +105,20 @@ public class CarAgent : Agent
     /// </summary>
     public override void OnActionReceived(ActionBuffers actionBuffers)
     {
-        var rawAction = new Vector2(actionBuffers.ContinuousActions[0], actionBuffers.ContinuousActions[1]);
-
-        Debug.Log(this.transform.parent.gameObject.name +
-                  ", " + this.name + "  onActionReceived: " + rawAction + "   " + transform.position);
-
-        var reverselyNormalizedPos2d = ReverselyNormalizePos2dCartesian(rawAction);
+        // var rawAction = new Vector2(actionBuffers.ContinuousActions[0], actionBuffers.ContinuousActions[1]);
+        //
+        // Debug.Log(this.transform.parent.gameObject.name +
+        //           ", " + this.name + "  onActionReceived: " + rawAction + "   " + transform.position);
+        //
+        // var reverselyNormalizedPos2d = ReverselyNormalizePos2dCartesian(rawAction);
 
         // Add the reversely normalized action and the car's global position (because setDestination accept a global target position)
-        var navigationGoal = transform.position +
-                             new Vector3(reverselyNormalizedPos2d.x, 0f, reverselyNormalizedPos2d.y);
-
-        Debug.Log(this.transform.parent.gameObject.name +
-                  ", " + this.name + "  onActionReceived: navigationGoal " + navigationGoal);
-        m_AgentNavMeshAgent.SetDestination(navigationGoal);
+        // var navigationGoal = transform.position +
+        //                      new Vector3(reverselyNormalizedPos2d.x, 0f, reverselyNormalizedPos2d.y);
+        //
+        // Debug.Log(this.transform.parent.gameObject.name +
+        //           ", " + this.name + "  onActionReceived: navigationGoal " + navigationGoal);
+        // m_AgentNavMeshAgent.SetDestination(navigationGoal);
 
         // Move the agent using the action.
         // MoveAgent(actionBuffers.DiscreteActions);
@@ -219,9 +215,9 @@ public class CarAgent : Agent
 
     public void FixedUpdate()
     {
-        Debug.Log(this.transform.parent.gameObject.name +
-                  ", " + this.name + "  FixedUpdate: " + carCatchingEnvController.ResetTimer + "   " +
-                  transform.position);
+        // Debug.Log(this.transform.parent.gameObject.name +
+        //           ", " + this.name + "  FixedUpdate: " + carCatchingEnvController.ResetTimer + "   " +
+        //           transform.position);
 
         // Debug.Log( this.transform.parent.gameObject.name +
         //            ", " + this.name + "  StepCount: " + StepCount);

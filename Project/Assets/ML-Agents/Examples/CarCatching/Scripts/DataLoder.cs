@@ -9,7 +9,7 @@ public class CapturePosMap
     // Read the JSON file content
     string jsonContent;
 
-    Dictionary<string, double[,]> resultMap;
+    private Dictionary<string, double[,]> resultMap;
 
     public CapturePosMap(string relativePath)
     {
@@ -28,7 +28,7 @@ public class CapturePosMap
 
         Debug.Log(jsonContent);
 
-        // Deserialize the JSON content into a Dictionary<string, int[][]>
+        // Deserialize the JSON content into a Dictionary<string, double[,]>
         resultMap = JsonConvert.DeserializeObject<Dictionary<string, double[,]>>(jsonContent);
     }
 
@@ -70,5 +70,54 @@ public class CapturePosMap
 
         // Debug.Log("getValueFromKey End");
         return posList;
+    }
+}
+
+// Assume the json data has the following formats:
+// Timestamp, blue car (x, z, rotation)
+public class TrajList
+{
+    // Read the JSON file content
+    string jsonContent;
+
+    public List<Tuple<int, float[,]>> TrajDataList;
+
+    public TrajList(string relativePath)
+    {
+        // Use Application.streamingAssetsPath for files in the StreamingAssets folder
+        string fullPath = Path.Combine(Application.streamingAssetsPath, relativePath);
+        Debug.Log("Json file at: " + fullPath);
+
+        if (File.Exists(fullPath))
+        {
+            jsonContent = File.ReadAllText(fullPath);
+        }
+        else
+        {
+            Debug.Log("File not found: " + fullPath);
+        }
+
+        Debug.Log(jsonContent);
+
+        // Deserialize the JSON content into a SortedDictionary<string, double[,]>
+        SortedDictionary<string, float[,]> resultMap;
+        resultMap = JsonConvert.DeserializeObject<SortedDictionary<string, float[,]>>(jsonContent);
+
+        // Traverse the SortedDictionary and add each double[,] to the list
+        TrajDataList = new List<Tuple<int, float[,]>>();
+        foreach (KeyValuePair<string, float[,]> kvp in resultMap)
+        {
+            int timestamp = int.Parse(kvp.Key);
+            TrajDataList.Add(Tuple.Create(timestamp, kvp.Value));
+            // Debug.Log("timestamp " + kvp.Key);
+        }
+
+        for (int i = 0; i < TrajDataList.Count - 1; i++)
+        {
+            // Debug.Log("timestamp " + TrajDataList[i + 1].Item1 + " " + TrajDataList[i].Item1);
+            TrajDataList[i] = Tuple.Create(TrajDataList[i + 1].Item1 - TrajDataList[i].Item1, TrajDataList[i].Item2);
+            // Debug.Log("period " + TrajDataList[i].Item1);
+        }
+        Debug.Log("TrajList finished");
     }
 }
