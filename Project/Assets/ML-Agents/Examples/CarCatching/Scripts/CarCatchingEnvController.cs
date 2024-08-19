@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections;
 using Unity.MLAgents;
 using Unity.Sentis.Layers;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Serialization;
@@ -84,9 +85,12 @@ public class CarCatchingEnvController : MonoBehaviour
         }
 
         for (; RunningNum < AgentsList.Count && AgentsList[RunningNum].Agent.isRunning; ++RunningNum) ;
-        var dataList = m_CarCatchingSettings.trajList.TrajDataList;
-        MoveCarsPerTimestamp(dataList, 0);
-        // StartCoroutine(MoveCarsForever());
+        foreach (var agent in AgentsList)
+        {
+            agent.LineRenderer.positionCount = 0;
+        }
+
+        StartCoroutine(MoveCarsForever());
     }
 
     void MoveCarsPerTimestamp(List<Tuple<int, float[,]>> dataList, int timestamp)
@@ -118,11 +122,11 @@ public class CarCatchingEnvController : MonoBehaviour
         Debug.Log("car number: " + dataList[0].Item2.GetLength(0));
         Debug.Log("coordinate dim: " + dataList[0].Item2.GetLength(1));
 
-        for (int i = 1; ; )
+        for (int i = 0; ; )
         {
-            yield return new WaitForSeconds(dataList[i - 1].Item1 * 0.001f);
             MoveCarsPerTimestamp(dataList, i);
-            // Debug.Log("period " + i + ": " + dataList[i].Item1);
+            Debug.Log("period " + i + ": " + dataList[i].Item1);
+            yield return new WaitForSeconds(dataList[i].Item1 * 0.001f);
 
             if (i < dataList.Count) // infinite loop
                 ++i;
