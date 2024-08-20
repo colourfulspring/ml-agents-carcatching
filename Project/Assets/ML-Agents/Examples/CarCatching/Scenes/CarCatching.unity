@@ -804,9 +804,12 @@ PlayableDirector:
   m_SceneBindings:
   - key: {fileID: 4245328413114817934, guid: 9213a698fd6f5bf498e23ff940cc8908, type: 2}
     value: {fileID: 1430038048}
+  - key: {fileID: 3302241582333552131, guid: 9213a698fd6f5bf498e23ff940cc8908, type: 2}
+    value: {fileID: 1430038048}
   m_ExposedReferences:
     m_References:
     - 231178d990bd3c141ae888d052e11ebb: {fileID: 508915944}
+    - 3738d3cbbc4e67f4594d717caa9707ba: {fileID: 508915944}
     - ea32b7d1cbdc021479ccc7834d982f1a: {fileID: 0}
 --- !u!1 &1964534133
 GameObject:

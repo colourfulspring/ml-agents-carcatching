@@ -33,6 +33,6 @@ public class CarCatchingSettings : MonoBehaviour
     public void Awake()
     {
         // CapturePosMap = new CapturePosMap("data.json");
-        trajList = new TrajList("rd_202408172023.json");
+        trajList = new TrajList("rd_202408191817.json");
     }
 }

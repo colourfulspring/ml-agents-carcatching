@@ -124,11 +124,13 @@ public class CarCatchingEnvController : MonoBehaviour
 
         for (int i = 0; ; )
         {
+            dataList[i] = Tuple.Create(1000 / 60, dataList[i].Item2); // each period is 1/60s.
+
             MoveCarsPerTimestamp(dataList, i);
             Debug.Log("period " + i + ": " + dataList[i].Item1);
             yield return new WaitForSeconds(dataList[i].Item1 * 0.001f);
 
-            if (i < dataList.Count) // infinite loop
+            if (i < dataList.Count - 1) // infinite loop
                 ++i;
         }
     }
