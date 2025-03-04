@@ -49,8 +49,8 @@ if __name__ == "__main__":
 
         sns.lineplot(x="Step", y="Value", data=df, hue="Legend", errorbar='sd')
 
-        # Define the new filename with '.svg' extension
-        png_filename = os.path.splitext(os.path.basename(file_path))[0] + '.svg'
+        # Define the new filename with '.pdf' extension
+        pdf_filename = os.path.splitext(os.path.basename(file_path))[0] + '.pdf'
 
         # Add labels and title
         plt.xlabel('训练步数', fontproperties=zhfont1, fontsize=17)
@@ -62,8 +62,8 @@ if __name__ == "__main__":
         # Add legend
         plt.legend()
 
-        # Save the plot as a svg file
-        plt.savefig(os.path.join(destination_dir, png_filename), format='svg')
+        # Save the plot as a pdf file
+        plt.savefig(os.path.join(destination_dir, pdf_filename), format='pdf', dpi=300, bbox_inches='tight')
 
         print(f"Plot {file_path}")
 
