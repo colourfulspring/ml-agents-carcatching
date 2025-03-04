@@ -45,8 +45,8 @@ if __name__ == "__main__":
 
         sns.lineplot(x="Step", y="Value", data=df, hue="Legend", errorbar='sd')
 
-        # Define the new filename with '.png' extension
-        png_filename = os.path.splitext(os.path.basename(file_path))[0] + '.png'
+        # Define the new filename with '.svg' extension
+        png_filename = os.path.splitext(os.path.basename(file_path))[0] + '.svg'
 
         # Add labels and title
         plt.xlabel('Step', fontweight='bold')
